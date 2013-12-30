@@ -1,0 +1,72 @@
+/* line 3, ../sass/app.scss */
+html {
+  background: transparent;
+}
+
+/* line 7, ../sass/app.scss */
+#main {
+  overflow-y: scroll;
+  /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden !important;
+}
+
+/* line 14, ../sass/app.scss */
+.platform-ios7 .content.has-header {
+  padding-bottom: 64px;
+}
+
+/* line 20, ../sass/app.scss */
+.logged-out #event-list {
+  display: none;
+}
+
+/* line 26, ../sass/app.scss */
+.logged-in #loginForm {
+  display: none;
+}
+
+/* line 31, ../sass/app.scss */
+#event {
+  display: none;
+}
+
+/* line 35, ../sass/app.scss */
+.full-height {
+  position: absolute;
+  top: 0;
+  bottom: 64px;
+  left: 0;
+  right: 0;
+}
+
+/* line 41, ../sass/app.scss */
+.scanner-off {
+  background: white;
+}
+/* line 44, ../sass/app.scss */
+.scanner-off #scanner-view {
+  display: none;
+}
+/* line 47, ../sass/app.scss */
+.scanner-off #result-view {
+  display: block;
+}
+
+/* line 52, ../sass/app.scss */
+.scanner-on {
+  background: transparent;
+}
+/* line 55, ../sass/app.scss */
+.scanner-on #scanner-view {
+  display: block;
+}
+/* line 58, ../sass/app.scss */
+.scanner-on #result-view {
+  display: none;
+}
+
+/* line 64, ../sass/app.scss */
+body.scanner-off[data-page="scanner-view"] #back-btn.hidden, body.scanner-off[data-page="scanner-view"] #sync-btn.hidden {
+  display: block;
+}
