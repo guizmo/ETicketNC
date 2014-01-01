@@ -1,0 +1,1052 @@
+3.2.12 (Media Mark)
+8bc968e90e71028147e1371a0c762450938c1cd5
+o:Sass::Tree::RootNode
+:@template"ë9
+// Button Mixins
+// --------------------------------------------------
+
+@mixin button-style($bg-color, $border-color, $active-bg-color, $active-border-color, $color) {
+  color: $color;
+  background-color: $bg-color;
+  border-color: $border-color;
+
+  // Give desktop users something to play with
+  &:hover {
+    color: $color;
+    text-decoration: none;
+  }
+  &.active, &:active {
+    background-color: $active-bg-color;
+    box-shadow: inset 0px 1px 3px rgba(0,0,0,0.15);
+    border-color: $active-border-color;
+  }
+}
+
+@mixin button-clear($color, $font-size:"") {
+  &.button-clear {
+    color: $color;
+    background: none;
+    border-color: transparent;
+    box-shadow: none;
+
+    @if $font-size != "" {
+      font-size: $font-size;
+    }
+  }
+  &.button-icon {
+    background: none;
+    border-color: transparent;
+  }
+}
+
+@mixin button-outline($color, $text-color:"") {
+  &.button-outline {
+    background: transparent;
+    border-color: $color;
+    @if $text-color == "" {
+      $text-color: $color;
+    } 
+    color: $text-color;
+    &.active, &:active {
+      background-color: $color;
+      color: #fff;
+      box-shadow: none;
+    }
+  }
+}
+
+
+// Bar Mixins
+// --------------------------------------------------
+
+@mixin bar-style($bg-color, $border-color, $color) {
+  background-color: $bg-color;
+  border-color: $border-color;
+  background-image: linear-gradient(0deg, $border-color, $border-color 50%, transparent 50%);
+
+  color: $color;
+
+  .title {
+    color: $color;
+  }
+}
+
+
+// Tab Mixins
+// --------------------------------------------------
+
+@mixin tab-style($bg-color, $border-color, $color) {
+  background-color: $bg-color;
+  background-image: linear-gradient(0deg, $border-color, $border-color 50%, transparent 50%);
+  border-color: $border-color;
+  color: $color;
+}
+
+
+// Item Mixins
+// --------------------------------------------------
+
+@mixin item-style($bg-color, $border-color, $color) {
+  color: $color;
+  background-color: $bg-color;
+  border-color: $border-color;
+}
+
+@mixin item-active-style($active-bg-color, $active-border-color) {
+  &.active, 
+  .ionic-pseudo &:active {
+    background-color: $active-bg-color;
+    border-color: $active-border-color;
+  }
+}
+
+
+// Badge Mixins
+// --------------------------------------------------
+
+@mixin badge-style($bg-color, $color) {
+  background-color: $bg-color;
+  color: $color;
+}
+
+
+// Range Mixins
+// --------------------------------------------------
+
+@mixin range-style($track-bg-color) {
+  &::-webkit-slider-thumb:before {
+    background: $track-bg-color;
+  }
+}
+
+
+// Clearfix
+// --------------------------------------------------
+
+@mixin clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+// Placeholder text
+// --------------------------------------------------
+
+@mixin placeholder($color: $input-color-placeholder) {
+  &:-moz-placeholder {
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+}
+
+
+// Text Mixins
+// --------------------------------------------------
+
+@mixin text-size-adjust($value: none) {
+  -webkit-text-size-adjust: $value; 
+     -moz-text-size-adjust: $value;
+          text-size-adjust: $value; 
+}
+@mixin tap-highlight-transparent() {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent; // For some Androids
+}
+@mixin touch-callout($value: none) {
+  -webkit-touch-callout: $value;
+}
+
+
+// Font Mixins
+// --------------------------------------------------
+
+@mixin font-family-serif() {
+  font-family: $serif-font-family;
+}
+@mixin font-family-sans-serif() {
+  font-family: $sans-font-family;
+}
+@mixin font-family-monospace() {
+  font-family: $mono-font-family;
+}
+@mixin font-shorthand($size: $base-font-size, $weight: normal, $line-height: $base-line-height) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+}
+@mixin font-serif($size: $base-font-size, $weight: normal, $line-height: $base-line-height) {
+  @include font-family-serif();
+  @include font-shorthand($size, $weight, $line-height);
+}
+@mixin font-sans-serif($size: $base-font-size, $weight: normal, $line-height: $base-line-height) {
+  @include font-family-sans-serif();
+  @include font-shorthand($size, $weight, $line-height);
+}
+@mixin font-monospace($size: $base-font-size, $weight: normal, $line-height: $base-line-height) {
+  @include font-family-monospace();
+  @include font-shorthand($size, $weight, $line-height);
+}
+@mixin font-smoothing($font-smoothing) { 
+  -webkit-font-smoothing: $font-smoothing;
+          font-smoothing: $font-smoothing;
+}
+
+
+// Appearance
+// --------------------------------------------------
+
+@mixin appearance($val) {
+  -webkit-appearance: $val;
+  -moz-appearance: $val;
+  appearance: $val;
+}
+
+
+// Border Radius Mixins
+// --------------------------------------------------
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+// Single Corner Border Radius
+@mixin border-top-left-radius($radius) {
+  -webkit-border-top-left-radius: $radius;
+      -moz-border-radius-topleft: $radius;
+          border-top-left-radius: $radius;
+}
+@mixin border-top-right-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+      -moz-border-radius-topright: $radius;
+          border-top-right-radius: $radius;
+}
+@mixin border-bottom-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+      -moz-border-radius-bottomright: $radius;
+          border-bottom-right-radius: $radius;
+}
+@mixin border-bottom-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+      -moz-border-radius-bottomleft: $radius;
+          border-bottom-left-radius: $radius;
+}
+
+// Single Side Border Radius
+@mixin border-top-radius($radius) {
+  @include border-top-right-radius($radius);
+  @include border-top-left-radius($radius);
+}
+@mixin border-right-radius($radius) {
+  @include border-top-right-radius($radius);
+  @include border-bottom-right-radius($radius);
+}
+@mixin border-bottom-radius($radius) {
+  @include border-bottom-right-radius($radius);
+  @include border-bottom-left-radius($radius);
+}
+@mixin border-left-radius($radius) {
+  @include border-top-left-radius($radius);
+  @include border-bottom-left-radius($radius);
+}
+
+
+// Box shadows
+// --------------------------------------------------
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+     -moz-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
+
+
+// Transition Mixins
+// --------------------------------------------------
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+          transition: $transition;
+}
+@mixin transition-delay($transition-delay) {
+  -webkit-transition-delay: $transition-delay;
+     -moz-transition-delay: $transition-delay;
+          transition-delay: $transition-delay;
+}
+@mixin transition-duration($transition-duration) {
+  -webkit-transition-duration: $transition-duration;
+     -moz-transition-duration: $transition-duration;
+          transition-duration: $transition-duration;
+}
+@mixin transition-timing-function($transition-timing) {
+   -webkit-transition-timing-function: $transition-timing;
+      -moz-transition-timing-function: $transition-timing;
+           transition-timing-function: $transition-timing;
+ }
+ @mixin transition-property($property) {
+  -webkit-transition-property: $property;
+     -moz-transition-property: $property;
+          transition-property: $property;
+}
+@mixin transition-transform($properties...) {
+  // special case cuz of transform vendor prefixes
+  -webkit-transition: -webkit-transform $properties;
+     -moz-transition: -moz-transform $properties;
+          transition: transform $properties;
+}
+
+
+// Animation Mixins
+// --------------------------------------------------
+
+@mixin animation($animation) {
+ -webkit-animation: $animation;
+    -moz-animation: $animation;
+         animation: $animation;
+}
+@mixin animation-duration($duration) {
+ -webkit-animation-duration: $duration;
+    -moz-animation-duration: $duration;
+         animation-duration: $duration;
+}
+@mixin animation-timing-function($animation-timing) {
+ -webkit-animation-timing-function: $animation-timing;
+    -moz-animation-timing-function: $animation-timing;
+         animation-timing-function: $animation-timing;
+}
+@mixin animation-fill-mode($fill-mode) {
+ -webkit-animation-fill-mode: $fill-mode;
+    -moz-animation-fill-mode: $fill-mode;
+         animation-fill-mode: $fill-mode;
+}
+@mixin animation-name($name) {
+ -webkit-animation-name: $name;
+    -moz-animation-name: $name;
+         animation-name: $name;
+}
+@mixin animation-iteration-count($count) {
+ -webkit-animation-iteration-count: $count;
+    -moz-animation-iteration-count: $count;
+         animation-iteration-count: $count;
+ }
+
+
+// Transformation Mixins
+// --------------------------------------------------
+
+@mixin rotate($degrees) {
+  -webkit-transform: rotate($degrees);
+     -moz-transform: rotate($degrees);
+          transform: rotate($degrees);
+}
+@mixin scale($ratio) {
+  -webkit-transform: scale($ratio);
+     -moz-transform: scale($ratio);
+          transform: scale($ratio);
+}
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+     -moz-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+@mixin skew($x, $y) {
+  -webkit-transform: skew($x, $y);
+     -moz-transform: skew($x, $y);
+          transform: skew($x, $y);
+  -webkit-backface-visibility: hidden;
+}
+@mixin translate3d($x, $y, $z) {
+  -webkit-transform: translate3d($x, $y, $z);
+     -moz-transform: translate3d($x, $y, $z);
+          transform: translate3d($x, $y, $z);
+}
+@mixin translateZ($z) {
+  -webkit-transform: translateZ($z);
+     -moz-transform: translateZ($z);
+          transform: translateZ($z);
+}
+
+@mixin transform-origin($left, $top) {
+  -webkit-transform-origin: $left $top;
+     -moz-transform-origin: $left $top;
+          transform-origin: $left $top;
+}
+
+
+// Backface visibility
+// --------------------------------------------------
+// Prevent browsers from flickering when using CSS 3D transforms.
+// Default value is `visible`, but can be changed to `hidden
+
+@mixin backface-visibility($visibility){
+  -webkit-backface-visibility: $visibility;
+          backface-visibility: $visibility;
+}
+
+
+// Background clipping
+// --------------------------------------------------
+
+@mixin background-clip($clip) {
+  -webkit-background-clip: $clip;
+     -moz-background-clip: $clip;
+          background-clip: $clip;
+}
+
+
+// Background sizing
+// --------------------------------------------------
+
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+     -moz-background-size: $size;
+          background-size: $size;
+}
+
+
+// Box sizing
+// --------------------------------------------------
+
+@mixin box-sizing($boxmodel) {
+  -webkit-box-sizing: $boxmodel;
+     -moz-box-sizing: $boxmodel;
+          box-sizing: $boxmodel;
+}
+
+
+// User select
+// --------------------------------------------------
+
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+     -moz-user-select: $select;
+      -ms-user-select: $select;
+          user-select: $select;
+}
+
+
+// Content Columns
+// --------------------------------------------------
+
+@mixin content-columns($columnCount, $columnGap: $grid-gutter-width) {
+  -webkit-column-count: $columnCount;
+     -moz-column-count: $columnCount;
+          column-count: $columnCount;
+  -webkit-column-gap: $columnGap;
+     -moz-column-gap: $columnGap;
+          column-gap: $columnGap;
+}
+
+
+// Flexbox Mixins
+// --------------------------------------------------
+// http://philipwalton.github.io/solved-by-flexbox/
+// https://github.com/philipwalton/solved-by-flexbox
+
+@mixin display-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin dislay-inline-flex {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex-direction($value: row) {
+  @if $value == row-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+  } @else if $value == column {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+  } @else if $value == column-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+  } @else {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+  }
+  -webkit-flex-direction: $value;
+  -moz-flex-direction: $value;
+  -ms-flex-direction: $value;
+  flex-direction: $value;
+}
+
+@mixin flex-wrap($value: nowrap) {
+  // No Webkit Box fallback.
+  -webkit-flex-wrap: $value;
+  -moz-flex-wrap: $value;
+  @if $value == nowrap {
+      -ms-flex-wrap: none;
+  } @else { 
+      -ms-flex-wrap: $value; 
+  }
+  flex-wrap: $value;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+  -webkit-box-flex: $fg;
+  -webkit-flex: $fg $fs $fb;
+  -moz-box-flex: $fg;
+  -moz-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
+}
+
+@mixin flex-flow($values: (row nowrap)) {
+  // No Webkit Box fallback.
+  -webkit-flex-flow: $values;
+  -moz-flex-flow: $values;
+  -ms-flex-flow: $values;
+  flex-flow: $values;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+  } @else {
+    -webkit-box-align: $value;
+    -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+  -moz-align-items: $value;
+  align-items: $value;
+}
+
+@mixin align-self($value: auto) {
+  -webkit-align-self: $value;
+  -moz-align-self: $value;
+  @if $value == flex-start {
+    -ms-flex-item-align: start;
+  } @else if $value == flex-end {
+    -ms-flex-item-align: end;
+  } @else {
+    -ms-flex-item-align: $value;
+  }
+  align-self: $value;
+}
+
+@mixin align-content($value: stretch) {
+  -webkit-align-content: $value;
+  -moz-align-content: $value;
+  @if $value == flex-start {
+    -ms-flex-line-pack: start;
+  } @else if $value == flex-end {
+    -ms-flex-line-pack: end;
+  } @else {
+    -ms-flex-line-pack: $value;
+  }
+  align-content: $value;
+}
+
+@mixin justify-content($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+  } @else if $value == flex-end {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+  } @else if $value == space-between {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+  } @else {
+    -webkit-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+  -webkit-justify-content: $value;
+  -moz-justify-content: $value;
+  justify-content: $value;
+}
+:@has_childrenT:@options{ :@children[bo:Sass::Tree::CommentNode
+:
+@type:silent:@value["N/* Button Mixins
+ * -------------------------------------------------- */;@;	[ :
+@lineio:Sass::Tree::MixinDefNode:
+@name"button-style;T;@;	[o:Sass::Tree::PropNode;["
+color;o:Sass::Script::Variable	;"
+color;@:@underscored_name"
+color;i:@prop_syntax:new;@:
+@tabsi ;	[ ;io;;["background-color;o;	;"bg-color;@;"bg_color;i;;;@;i ;	[ ;io;;["border-color;o;	;"border-color;@;"border_color;i;;;@;i ;	[ ;io;
+
+;;;["4/* Give desktop users something to play with */;@;	[ ;io:Sass::Tree::RuleNode:@parsed_ruleso:"Sass::Selector::CommaSequence:@members[o:Sass::Selector::Sequence;[o:#Sass::Selector::SimpleSequence
+;[o:Sass::Selector::Parent:@filename" ;io:Sass::Selector::Pseudo
+;["
+hover:	@arg0;@1;i:@syntactic_type:
+class:@sourceso:Set:
+@hash{ ;@1;i:@subject0;@1;i;T;@;i ;	[o;;["
+color;o;	;"
+color;@;"
+color;i;;;@;i ;	[ ;io;;["text-decoration;o:Sass::Script::String;:identifier;"	none;@;;;@;i ;	[ ;i;i:
+@rule["&:hovero;;o;;[o;;[o;
+;[o;;" ;io:Sass::Selector::Class;["active;@O;i;#o;$;%{ ;@O;i;&0o;;[o;
+;[o;;@O;io;
+;["active; 0;@O;i;!;";#o;$;%{ ;@O;i;&0;@O;i;T;@;i ;	[o;;["background-color;o;	;"active-bg-color;@;"active_bg_color;i;;;@;i ;	[ ;io;;["box-shadow;o:Sass::Script::List	:@separator:
+space;[
+o;'	;;(;"
+inset;@;io:Sass::Script::Number:@denominator_units[ ;i ;@:@numerator_units["px:@original"0px;io;.;/[ ;i;@;0["px;1"1px;io;.;/[ ;i;@;0["px;1"3px;io:Sass::Script::Funcall;"	rgba:@keywords{ ;@:@splat0;i:
+@args[	o;.;/[ ;i ;@;0[ ;1"0;io;.;/@};i ;@;0[ ;1"0;io;.;/@};i ;@;0[ ;1"0;io;.;/@};f0.14999999999999999 33;@;0[ ;1"	0.15;i;@;i;;;@;i ;	[ ;io;;["border-color;o;	;"active-border-color;@;"active_border_color;i;;;@;i ;	[ ;i;i;)["&.active, &:active;40;i
+;5[
+[o;;"bg-color;@;"bg_color0[o;;"border-color;@;"border_color0[o;;"active-bg-color;@;"active_bg_color0[o;;"active-border-color;@;"active_border_color0[o;;"
+color;@;"
+color0o;;"button-clear;T;@;	[o;;o;;[o;;[o;
+;[o;;" ;io;*;["button-clear;@´;i;#o;$;%{ ;@´;i;&0;@´;i;T;@;i ;	[
+o;;["
+color;o;	;"
+color;@;"
+color;i;;;@;i ;	[ ;io;;["background;o;';;(;"	none;@;;;@;i ;	[ ;io;;["border-color;o;';;(;"transparent;@;;;@;i ;	[ ;io;;["box-shadow;o;';;(;"	none;@;;;@;i ;	[ ;i u:Sass::Tree::IfNodeh[o:Sass::Script::Operation
+:@operator:neq:@operand1o:Sass::Script::Variable	:
+@name"font-size:@options{ :@underscored_name"font_size:
+@linei";@	;i":@operand2o:Sass::Script::String	:
+@type:string:@value" ;@	;i"0[o:Sass::Tree::PropNode;
+["font-size;o;		;
+"font-size;@	;"font_size;i#:@prop_syntax:new;@	:
+@tabsi :@children[ ;i#;i;)["&.button-clearo;;o;;[o;;[o;
+;[o;;" ;i&o;*;["button-icon;@ß;i&;#o;$;%{ ;@ß;i&;&0;@ß;i&;T;@;i ;	[o;;["background;o;';;(;"	none;@;;;@;i ;	[ ;i'o;;["border-color;o;';;(;"transparent;@;;;@;i ;	[ ;i(;i&;)["&.button-icon;40;i;5[[o;;"
+color;@;"
+color0[o;;"font-size;@;"font_sizeo;'	;:string;" ;@;io;;"button-outline;T;@;	[o;;o;;[o;;[o;
+;[o;;" ;i-o;*;["button-outline;@
+;i-;#o;$;%{ ;@
+;i-;&0;@
+;i-;T;@;i ;	[
+o;;["background;o;';;(;"transparent;@;;;@;i ;	[ ;i.o;;["border-color;o;	;"
+color;@;"
+color;i/;;;@;i ;	[ ;i/u;6X[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"text-color:@options{ :@underscored_name"text_color:
+@linei0;@	;i0:@operand2o:Sass::Script::String	:
+@type:string:@value" ;@	;i00[o:Sass::Tree::VariableNode:@guarded0;
+"text-color:
+@expro;		;
+"
+color;@	;"
+color;i1;@	:@children[ ;i1o;;["
+color;o;	;"text-color;@;"text_color;i3;;;@;i ;	[ ;i3o;;o;;[o;;[o;
+;[o;;" ;i4o;*;["active;@.;i4;#o;$;%{ ;@.;i4;&0o;;[o;
+;[o;;@.;i4o;
+;["active; 0;@.;i4;!;";#o;$;%{ ;@.;i4;&0;@.;i4;T;@;i ;	[o;;["background-color;o;	;"
+color;@;"
+color;i5;;;@;i ;	[ ;i5o;;["
+color;o;';;(;"	#fff;@;;;@;i ;	[ ;i6o;;["box-shadow;o;';;(;"	none;@;;;@;i ;	[ ;i7;i4;)["&.active, &:active;i-;)["&.button-outline;40;i,;5[[o;;"
+color;@;"
+color0[o;;"text-color;@;"text_coloro;'	;;7;" ;@;i,o;
+
+;;;["K/* Bar Mixins
+ * -------------------------------------------------- */;@;	[ ;i=o;;"bar-style;T;@;	[
+o;;["background-color;o;	;"bg-color;@;"bg_color;iA;;;@;i ;	[ ;iAo;;["border-color;o;	;"border-color;@;"border_color;iB;;;@;i ;	[ ;iBo;;["background-image;o;2;"linear-gradient;3{ ;@;40;iC;5[	o;.;/[ ;i ;@;0["deg;1"	0deg;iCo;	;"border-color;@;"border_color;iCo;+	;,;-;[o;	;"border-color;@;"border_color;iCo;.;/[ ;i7;@;0["%;1"50%;iC;@;iCo;+	;,;-;[o;'	;;(;"transparent;@;iCo;.;/[ ;i7;@;0["%;1"50%;iC;@;iC;;;@;i ;	[ ;iCo;;["
+color;o;	;"
+color;@;"
+color;iE;;;@;i ;	[ ;iEo;;o;;[o;;[o;
+;[o;*;["
+title;" ;iG;#o;$;%{ ;@ª;iG;&0;@ª;iG;T;@;i ;	[o;;["
+color;o;	;"
+color;@;"
+color;iH;;;@;i ;	[ ;iH;iG;)[".title;40;i@;5[[o;;"bg-color;@;"bg_color0[o;;"border-color;@;"border_color0[o;;"
+color;@;"
+color0o;
+
+;;;["K/* Tab Mixins
+ * -------------------------------------------------- */;@;	[ ;iMo;;"tab-style;T;@;	[	o;;["background-color;o;	;"bg-color;@;"bg_color;iQ;;;@;i ;	[ ;iQo;;["background-image;o;2;"linear-gradient;3{ ;@;40;iR;5[	o;.;/[ ;i ;@;0["deg;1"	0deg;iRo;	;"border-color;@;"border_color;iRo;+	;,;-;[o;	;"border-color;@;"border_color;iRo;.;/[ ;i7;@;0["%;1"50%;iR;@;iRo;+	;,;-;[o;'	;;(;"transparent;@;iRo;.;/[ ;i7;@;0["%;1"50%;iR;@;iR;;;@;i ;	[ ;iRo;;["border-color;o;	;"border-color;@;"border_color;iS;;;@;i ;	[ ;iSo;;["
+color;o;	;"
+color;@;"
+color;iT;;;@;i ;	[ ;iT;40;iP;5[[o;;"bg-color;@;"bg_color0[o;;"border-color;@;"border_color0[o;;"
+color;@;"
+color0o;
+
+;;;["L/* Item Mixins
+ * -------------------------------------------------- */;@;	[ ;iXo;;"item-style;T;@;	[o;;["
+color;o;	;"
+color;@;"
+color;i\;;;@;i ;	[ ;i\o;;["background-color;o;	;"bg-color;@;"bg_color;i];;;@;i ;	[ ;i]o;;["border-color;o;	;"border-color;@;"border_color;i^;;;@;i ;	[ ;i^;40;i[;5[[o;;"bg-color;@;"bg_color0[o;;"border-color;@;"border_color0[o;;"
+color;@;"
+color0o;;"item-active-style;T;@;	[o;;o;;[o;;[o;
+;[o;;" ;ico;*;["active;@D;ic;#o;$;%{ ;@D;ic;&0o;;["
+o;
+;[o;*;["ionic-pseudo;@D;ic;#o;$;%{ ;@D;ic;&0o;
+;[o;;@D;ico;
+;["active; 0;@D;ic;!;";#o;$;%{ ;@D;ic;&0;@D;ic;T;@;i ;	[o;;["background-color;o;	;"active-bg-color;@;"active_bg_color;id;;;@;i ;	[ ;ido;;["border-color;o;	;"active-border-color;@;"active_border_color;ie;;;@;i ;	[ ;ie;ic;)["(&.active, 
+  .ionic-pseudo &:active;40;ia;5[[o;;"active-bg-color;@;"active_bg_color0[o;;"active-border-color;@;"active_border_color0o;
+
+;;;["M/* Badge Mixins
+ * -------------------------------------------------- */;@;	[ ;ijo;;"badge-style;T;@;	[o;;["background-color;o;	;"bg-color;@;"bg_color;in;;;@;i ;	[ ;ino;;["
+color;o;	;"
+color;@;"
+color;io;;;@;i ;	[ ;io;40;im;5[[o;;"bg-color;@;"bg_color0[o;;"
+color;@;"
+color0o;
+
+;;;["M/* Range Mixins
+ * -------------------------------------------------- */;@;	[ ;iso;;"range-style;T;@;	[o;;o;;[o;;[o;
+;[o;;" ;iwo;
+;["-webkit-slider-thumb; 0;@£;iw;!:elemento;
+;["before; 0;@£;iw;!;";#o;$;%{ ;@£;iw;&0;@£;iw;T;@;i ;	[o;;["background;o;	;"track-bg-color;@;"track_bg_color;ix;;;@;i ;	[ ;ix;iw;)["#&::-webkit-slider-thumb:before;40;iv;5[[o;;"track-bg-color;@;"track_bg_color0o;
+
+;;;["I/* Clearfix
+ * -------------------------------------------------- */;@;	[ ;i}o;;"clearfix;T;@;	[o;;["
+*zoom;o;';;(;"1;@;;;@;i ;	[ ;i|o;;o;;[o;;[o;
+;[o;;" ;i~o;
+;["before; 0;@Ð;i~;!;";#o;$;%{ ;@Ð;i~;&0o;;["
+o;
+;[o;;@Ð;i~o;
+;["
+after; 0;@Ð;i~;!;";#o;$;%{ ;@Ð;i~;&0;@Ð;i~;T;@;i ;	[	o;;["display;o;';;(;"
+table;@;;;@;i ;	[ ;io;;["content;o;';;(;""";@;;;@;i ;	[ ;i€o;
+
+;;;["m/* Fixes Opera/contenteditable bug:
+ * http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952 */;@;	[ ;io;;["line-height;o;';;(;"0;@;;;@;i ;	[ ;iƒ;i~;)["&:before,
+  &:aftero;;o;;[o;;[o;
+;[o;;" ;i…o;
+;["
+after; 0;@;i…;!;";#o;$;%{ ;@;i…;&0;@;i…;T;@;i ;	[o;;["
+clear;o;';;(;"	both;@;;;@;i ;	[ ;i†;i…;)["&:after;40;i{;5[ o;
+
+;;;["Q/* Placeholder text
+ * -------------------------------------------------- */;@;	[ ;i‹o;;"placeholder;T;@;	[o;;o;;[o;;[o;
+;[o;;" ;io;
+;["-moz-placeholder; 0;@!;i;!;";#o;$;%{ ;@!;i;&0;@!;i;T;@;i ;	[o;;["
+color;o;	;"
+color;@;"
+color;i;;;@;i ;	[ ;i;i;)["&:-moz-placeholdero;;o;;[o;;[o;
+;[o;;" ;i’o;
+;["-ms-input-placeholder; 0;@9;i’;!;";#o;$;%{ ;@9;i’;&0;@9;i’;T;@;i ;	[o;;["
+color;o;	;"
+color;@;"
+color;i“;;;@;i ;	[ ;i“;i’;)["&:-ms-input-placeholdero;;o;;[o;;[o;
+;[o;;" ;i•o;
+;["-webkit-input-placeholder; 0;@Q;i•;!;8;#o;$;%{ ;@Q;i•;&0;@Q;i•;T;@;i ;	[o;;["
+color;o;	;"
+color;@;"
+color;i–;;;@;i ;	[ ;i–;i•;)["!&::-webkit-input-placeholder;40;iŽ;5[[o;;"
+color;@;"
+coloro;	;"input-color-placeholder;@;"input_color_placeholder;iŽo;
+
+;;;["L/* Text Mixins
+ * -------------------------------------------------- */;@;	[ ;i›o;;"text-size-adjust;T;@;	[o;;["-webkit-text-size-adjust;o;	;"
+value;@;"
+value;iŸ;;;@;i ;	[ ;iŸo;;["-moz-text-size-adjust;o;	;"
+value;@;"
+value;i ;;;@;i ;	[ ;i o;;["text-size-adjust;o;	;"
+value;@;"
+value;i¡;;;@;i ;	[ ;i¡;40;iž;5[[o;;"
+value;@;"
+valueo;'	;;(;"	none;@;ižo;;"tap-highlight-transparent;T;@;	[o;;[" -webkit-tap-highlight-color;o;2;"	rgba;3{ ;@;40;i¤;5[	o;.;/@};i ;@;0[ ;1"0;i¤o;.;/@};i ;@;0[ ;1"0;i¤o;.;/@};i ;@;0[ ;1"0;i¤o;.;/@};i ;@;0[ ;1"0;i¤;;;@;i ;	[ ;i¤o;;[" -webkit-tap-highlight-color;o;';;(;"transparent;@;;;@;i ;	[ ;i¥o;
+
+;;;["/* For some Androids */;@;	[ ;i¥;40;i£;5[ o;;"touch-callout;T;@;	[o;;["-webkit-touch-callout;o;	;"
+value;@;"
+value;i¨;;;@;i ;	[ ;i¨;40;i§;5[[o;;"
+value;@;"
+valueo;'	;;(;"	none;@;i§o;
+
+;;;["L/* Font Mixins
+ * -------------------------------------------------- */;@;	[ ;i¬o;;"font-family-serif;T;@;	[o;;["font-family;o;	;"serif-font-family;@;"serif_font_family;i°;;;@;i ;	[ ;i°;40;i¯;5[ o;;"font-family-sans-serif;T;@;	[o;;["font-family;o;	;"sans-font-family;@;"sans_font_family;i³;;;@;i ;	[ ;i³;40;i²;5[ o;;"font-family-monospace;T;@;	[o;;["font-family;o;	;"mono-font-family;@;"mono_font_family;i¶;;;@;i ;	[ ;i¶;40;iµ;5[ o;;"font-shorthand;T;@;	[o;;["font-size;o;	;"	size;@;"	size;i¹;;;@;i ;	[ ;i¹o;;["font-weight;o;	;"weight;@;"weight;iº;;;@;i ;	[ ;iºo;;["line-height;o;	;"line-height;@;"line_height;i»;;;@;i ;	[ ;i»;40;i¸;5[[o;;"	size;@;"	sizeo;	;"base-font-size;@;"base_font_size;i¸[o;;"weight;@;"weighto;'	;;(;"normal;@;i¸[o;;"line-height;@;"line_heighto;	;"base-line-height;@;"base_line_height;i¸o;;"font-serif;T;@;	[o:Sass::Tree::MixinNode;"font-family-serif;3{ ;@;	[ ;40;i¾;5[ o;9;"font-shorthand;3{ ;@;	[ ;40;i¿;5[o;	;"	size;@;"	size;i¿o;	;"weight;@;"weight;i¿o;	;"line-height;@;"line_height;i¿;40;i½;5[[o;;"	size;@;"	sizeo;	;"base-font-size;@;"base_font_size;i½[o;;"weight;@;"weighto;'	;;(;"normal;@;i½[o;;"line-height;@;"line_heighto;	;"base-line-height;@;"base_line_height;i½o;;"font-sans-serif;T;@;	[o;9;"font-family-sans-serif;3{ ;@;	[ ;40;iÂ;5[ o;9;"font-shorthand;3{ ;@;	[ ;40;iÃ;5[o;	;"	size;@;"	size;iÃo;	;"weight;@;"weight;iÃo;	;"line-height;@;"line_height;iÃ;40;iÁ;5[[o;;"	size;@;"	sizeo;	;"base-font-size;@;"base_font_size;iÁ[o;;"weight;@;"weighto;'	;;(;"normal;@;iÁ[o;;"line-height;@;"line_heighto;	;"base-line-height;@;"base_line_height;iÁo;;"font-monospace;T;@;	[o;9;"font-family-monospace;3{ ;@;	[ ;40;iÆ;5[ o;9;"font-shorthand;3{ ;@;	[ ;40;iÇ;5[o;	;"	size;@;"	size;iÇo;	;"weight;@;"weight;iÇo;	;"line-height;@;"line_height;iÇ;40;iÅ;5[[o;;"	size;@;"	sizeo;	;"base-font-size;@;"base_font_size;iÅ[o;;"weight;@;"weighto;'	;;(;"normal;@;iÅ[o;;"line-height;@;"line_heighto;	;"base-line-height;@;"base_line_height;iÅo;;"font-smoothing;T;@;	[o;;["-webkit-font-smoothing;o;	;"font-smoothing;@;"font_smoothing;iÊ;;;@;i ;	[ ;iÊo;;["font-smoothing;o;	;"font-smoothing;@;"font_smoothing;iË;;;@;i ;	[ ;iË;40;iÉ;5[[o;;"font-smoothing;@;"font_smoothing0o;
+
+;;;["K/* Appearance
+ * -------------------------------------------------- */;@;	[ ;iÏo;;"appearance;T;@;	[o;;["-webkit-appearance;o;	;"val;@;"val;iÓ;;;@;i ;	[ ;iÓo;;["-moz-appearance;o;	;"val;@;"val;iÔ;;;@;i ;	[ ;iÔo;;["appearance;o;	;"val;@;"val;iÕ;;;@;i ;	[ ;iÕ;40;iÒ;5[[o;;"val;@;"val0o;
+
+;;;["U/* Border Radius Mixins
+ * -------------------------------------------------- */;@;	[ ;iÙo;;"border-radius;T;@;	[o;;["-webkit-border-radius;o;	;"radius;@;"radius;iÝ;;;@;i ;	[ ;iÝo;;["-moz-border-radius;o;	;"radius;@;"radius;iÞ;;;@;i ;	[ ;iÞo;;["border-radius;o;	;"radius;@;"radius;iß;;;@;i ;	[ ;iß;40;iÜ;5[[o;;"radius;@;"radius0o;
+
+;;;["&/* Single Corner Border Radius */;@;	[ ;iâo;;"border-top-left-radius;T;@;	[o;;["#-webkit-border-top-left-radius;o;	;"radius;@;"radius;iä;;;@;i ;	[ ;iäo;;["-moz-border-radius-topleft;o;	;"radius;@;"radius;iå;;;@;i ;	[ ;iåo;;["border-top-left-radius;o;	;"radius;@;"radius;iæ;;;@;i ;	[ ;iæ;40;iã;5[[o;;"radius;@;"radius0o;;"border-top-right-radius;T;@;	[o;;["$-webkit-border-top-right-radius;o;	;"radius;@;"radius;ié;;;@;i ;	[ ;iéo;;[" -moz-border-radius-topright;o;	;"radius;@;"radius;iê;;;@;i ;	[ ;iêo;;["border-top-right-radius;o;	;"radius;@;"radius;ië;;;@;i ;	[ ;ië;40;iè;5[[o;;"radius;@;"radius0o;;"border-bottom-right-radius;T;@;	[o;;["'-webkit-border-bottom-right-radius;o;	;"radius;@;"radius;iî;;;@;i ;	[ ;iîo;;["#-moz-border-radius-bottomright;o;	;"radius;@;"radius;iï;;;@;i ;	[ ;iïo;;["border-bottom-right-radius;o;	;"radius;@;"radius;ið;;;@;i ;	[ ;ið;40;ií;5[[o;;"radius;@;"radius0o;;"border-bottom-left-radius;T;@;	[o;;["&-webkit-border-bottom-left-radius;o;	;"radius;@;"radius;ió;;;@;i ;	[ ;ióo;;[""-moz-border-radius-bottomleft;o;	;"radius;@;"radius;iô;;;@;i ;	[ ;iôo;;["border-bottom-left-radius;o;	;"radius;@;"radius;iõ;;;@;i ;	[ ;iõ;40;iò;5[[o;;"radius;@;"radius0o;
+
+;;;["$/* Single Side Border Radius */;@;	[ ;iøo;;"border-top-radius;T;@;	[o;9;"border-top-right-radius;3{ ;@;	[ ;40;iú;5[o;	;"radius;@;"radius;iúo;9;"border-top-left-radius;3{ ;@;	[ ;40;iû;5[o;	;"radius;@;"radius;iû;40;iù;5[[o;;"radius;@;"radius0o;;"border-right-radius;T;@;	[o;9;"border-top-right-radius;3{ ;@;	[ ;40;iþ;5[o;	;"radius;@;"radius;iþo;9;"border-bottom-right-radius;3{ ;@;	[ ;40;iÿ;5[o;	;"radius;@;"radius;iÿ;40;iý;5[[o;;"radius;@;"radius0o;;"border-bottom-radius;T;@;	[o;9;"border-bottom-right-radius;3{ ;@;	[ ;40;i;5[o;	;"radius;@;"radius;io;9;"border-bottom-left-radius;3{ ;@;	[ ;40;i;5[o;	;"radius;@;"radius;i;40;i;5[[o;;"radius;@;"radius0o;;"border-left-radius;T;@;	[o;9;"border-top-left-radius;3{ ;@;	[ ;40;i;5[o;	;"radius;@;"radius;io;9;"border-bottom-left-radius;3{ ;@;	[ ;40;i;5[o;	;"radius;@;"radius;i;40;i;5[[o;;"radius;@;"radius0o;
+
+;;;["L/* Box shadows
+ * -------------------------------------------------- */;@;	[ ;io;;"box-shadow;T;@;	[o;;["-webkit-box-shadow;o;	;"shadow;@;"shadow;i;;;@;i ;	[ ;io;;["-moz-box-shadow;o;	;"shadow;@;"shadow;i;;;@;i ;	[ ;io;;["box-shadow;o;	;"shadow;@;"shadow;i;;;@;i ;	[ ;i;4o;;"shadow;{ ;"shadow;i;5[ o;
+
+;;;["R/* Transition Mixins
+ * -------------------------------------------------- */;@;	[ ;io;;"transition;T;@;	[o;;["-webkit-transition;o;	;"transition;@;"transition;i;;;@;i ;	[ ;io;;["-moz-transition;o;	;"transition;@;"transition;i;;;@;i ;	[ ;io;;["transition;o;	;"transition;@;"transition;i;;;@;i ;	[ ;i;4o;;"transition;{ ;"transition;i;5[ o;;"transition-delay;T;@;	[o;;["-webkit-transition-delay;o;	;"transition-delay;@;"transition_delay;i;;;@;i ;	[ ;io;;["-moz-transition-delay;o;	;"transition-delay;@;"transition_delay;i;;;@;i ;	[ ;io;;["transition-delay;o;	;"transition-delay;@;"transition_delay;i ;;;@;i ;	[ ;i ;40;i;5[[o;;"transition-delay;@;"transition_delay0o;;"transition-duration;T;@;	[o;;[" -webkit-transition-duration;o;	;"transition-duration;@;"transition_duration;i#;;;@;i ;	[ ;i#o;;["-moz-transition-duration;o;	;"transition-duration;@;"transition_duration;i$;;;@;i ;	[ ;i$o;;["transition-duration;o;	;"transition-duration;@;"transition_duration;i%;;;@;i ;	[ ;i%;40;i";5[[o;;"transition-duration;@;"transition_duration0o;;"transition-timing-function;T;@;	[o;;["'-webkit-transition-timing-function;o;	;"transition-timing;@;"transition_timing;i(;;;@;i ;	[ ;i(o;;["$-moz-transition-timing-function;o;	;"transition-timing;@;"transition_timing;i);;;@;i ;	[ ;i)o;;["transition-timing-function;o;	;"transition-timing;@;"transition_timing;i*;;;@;i ;	[ ;i*;40;i';5[[o;;"transition-timing;@;"transition_timing0o;;"transition-property;T;@;	[o;;[" -webkit-transition-property;o;	;"property;@;"property;i-;;;@;i ;	[ ;i-o;;["-moz-transition-property;o;	;"property;@;"property;i.;;;@;i ;	[ ;i.o;;["transition-property;o;	;"property;@;"property;i/;;;@;i ;	[ ;i/;40;i,;5[[o;;"property;@;"property0o;;"transition-transform;T;@;	[	o;
+
+;;;["8/* special case cuz of transform vendor prefixes */;@;	[ ;i2o;;["-webkit-transition;o;+	;,;-;[o;'	;;(;"-webkit-transform;@;i3o;	;"properties;@;"properties;i3;@;i3;;;@;i ;	[ ;i3o;;["-moz-transition;o;+	;,;-;[o;'	;;(;"-moz-transform;@;i4o;	;"properties;@;"properties;i4;@;i4;;;@;i ;	[ ;i4o;;["transition;o;+	;,;-;[o;'	;;(;"transform;@;i5o;	;"properties;@;"properties;i5;@;i5;;;@;i ;	[ ;i5;4o;;"properties;{ ;"properties;i1;5[ o;
+
+;;;["Q/* Animation Mixins
+ * -------------------------------------------------- */;@;	[ ;i9o;;"animation;T;@;	[o;;["-webkit-animation;o;	;"animation;@;"animation;i=;;;@;i ;	[ ;i=o;;["-moz-animation;o;	;"animation;@;"animation;i>;;;@;i ;	[ ;i>o;;["animation;o;	;"animation;@;"animation;i?;;;@;i ;	[ ;i?;40;i<;5[[o;;"animation;@;"animation0o;;"animation-duration;T;@;	[o;;["-webkit-animation-duration;o;	;"duration;@;"duration;iB;;;@;i ;	[ ;iBo;;["-moz-animation-duration;o;	;"duration;@;"duration;iC;;;@;i ;	[ ;iCo;;["animation-duration;o;	;"duration;@;"duration;iD;;;@;i ;	[ ;iD;40;iA;5[[o;;"duration;@;"duration0o;;"animation-timing-function;T;@;	[o;;["&-webkit-animation-timing-function;o;	;"animation-timing;@;"animation_timing;iG;;;@;i ;	[ ;iGo;;["#-moz-animation-timing-function;o;	;"animation-timing;@;"animation_timing;iH;;;@;i ;	[ ;iHo;;["animation-timing-function;o;	;"animation-timing;@;"animation_timing;iI;;;@;i ;	[ ;iI;40;iF;5[[o;;"animation-timing;@;"animation_timing0o;;"animation-fill-mode;T;@;	[o;;[" -webkit-animation-fill-mode;o;	;"fill-mode;@;"fill_mode;iL;;;@;i ;	[ ;iLo;;["-moz-animation-fill-mode;o;	;"fill-mode;@;"fill_mode;iM;;;@;i ;	[ ;iMo;;["animation-fill-mode;o;	;"fill-mode;@;"fill_mode;iN;;;@;i ;	[ ;iN;40;iK;5[[o;;"fill-mode;@;"fill_mode0o;;"animation-name;T;@;	[o;;["-webkit-animation-name;o;	;"	name;@;"	name;iQ;;;@;i ;	[ ;iQo;;["-moz-animation-name;o;	;"	name;@;"	name;iR;;;@;i ;	[ ;iRo;;["animation-name;o;	;"	name;@;"	name;iS;;;@;i ;	[ ;iS;40;iP;5[[o;;"	name;@;"	name0o;;"animation-iteration-count;T;@;	[o;;["&-webkit-animation-iteration-count;o;	;"
+count;@;"
+count;iV;;;@;i ;	[ ;iVo;;["#-moz-animation-iteration-count;o;	;"
+count;@;"
+count;iW;;;@;i ;	[ ;iWo;;["animation-iteration-count;o;	;"
+count;@;"
+count;iX;;;@;i ;	[ ;iX;40;iU;5[[o;;"
+count;@;"
+count0o;
+
+;;;["V/* Transformation Mixins
+ * -------------------------------------------------- */;@;	[ ;i\o;;"rotate;T;@;	[o;;["-webkit-transform;o;2;"rotate;3{ ;@;40;i`;5[o;	;"degrees;@;"degrees;i`;;;@;i ;	[ ;i`o;;["-moz-transform;o;2;"rotate;3{ ;@;40;ia;5[o;	;"degrees;@;"degrees;ia;;;@;i ;	[ ;iao;;["transform;o;2;"rotate;3{ ;@;40;ib;5[o;	;"degrees;@;"degrees;ib;;;@;i ;	[ ;ib;40;i_;5[[o;;"degrees;@;"degrees0o;;"
+scale;T;@;	[o;;["-webkit-transform;o;2;"
+scale;3{ ;@;40;ie;5[o;	;"
+ratio;@;"
+ratio;ie;;;@;i ;	[ ;ieo;;["-moz-transform;o;2;"
+scale;3{ ;@;40;if;5[o;	;"
+ratio;@;"
+ratio;if;;;@;i ;	[ ;ifo;;["transform;o;2;"
+scale;3{ ;@;40;ig;5[o;	;"
+ratio;@;"
+ratio;ig;;;@;i ;	[ ;ig;40;id;5[[o;;"
+ratio;@;"
+ratio0o;;"translate;T;@;	[o;;["-webkit-transform;o;2;"translate;3{ ;@;40;ij;5[o;	;"x;@;"x;ijo;	;"y;@;"y;ij;;;@;i ;	[ ;ijo;;["-moz-transform;o;2;"translate;3{ ;@;40;ik;5[o;	;"x;@;"x;iko;	;"y;@;"y;ik;;;@;i ;	[ ;iko;;["transform;o;2;"translate;3{ ;@;40;il;5[o;	;"x;@;"x;ilo;	;"y;@;"y;il;;;@;i ;	[ ;il;40;ii;5[[o;;"x;@;"x0[o;;"y;@;"y0o;;"	skew;T;@;	[	o;;["-webkit-transform;o;2;"	skew;3{ ;@;40;io;5[o;	;"x;@;"x;ioo;	;"y;@;"y;io;;;@;i ;	[ ;ioo;;["-moz-transform;o;2;"	skew;3{ ;@;40;ip;5[o;	;"x;@;"x;ipo;	;"y;@;"y;ip;;;@;i ;	[ ;ipo;;["transform;o;2;"	skew;3{ ;@;40;iq;5[o;	;"x;@;"x;iqo;	;"y;@;"y;iq;;;@;i ;	[ ;iqo;;[" -webkit-backface-visibility;o;';;(;"hidden;@;;;@;i ;	[ ;ir;40;in;5[[o;;"x;@;"x0[o;;"y;@;"y0o;;"translate3d;T;@;	[o;;["-webkit-transform;o;2;"translate3d;3{ ;@;40;iu;5[o;	;"x;@;"x;iuo;	;"y;@;"y;iuo;	;"z;@;"z;iu;;;@;i ;	[ ;iuo;;["-moz-transform;o;2;"translate3d;3{ ;@;40;iv;5[o;	;"x;@;"x;ivo;	;"y;@;"y;ivo;	;"z;@;"z;iv;;;@;i ;	[ ;ivo;;["transform;o;2;"translate3d;3{ ;@;40;iw;5[o;	;"x;@;"x;iwo;	;"y;@;"y;iwo;	;"z;@;"z;iw;;;@;i ;	[ ;iw;40;it;5[[o;;"x;@;"x0[o;;"y;@;"y0[o;;"z;@;"z0o;;"translateZ;T;@;	[o;;["-webkit-transform;o;2;"translateZ;3{ ;@;40;iz;5[o;	;"z;@;"z;iz;;;@;i ;	[ ;izo;;["-moz-transform;o;2;"translateZ;3{ ;@;40;i{;5[o;	;"z;@;"z;i{;;;@;i ;	[ ;i{o;;["transform;o;2;"translateZ;3{ ;@;40;i|;5[o;	;"z;@;"z;i|;;;@;i ;	[ ;i|;40;iy;5[[o;;"z;@;"z0o;;"transform-origin;T;@;	[o;;["-webkit-transform-origin;o;+	;,;-;[o;	;"	left;@;"	left;i€o;	;"top;@;"top;i€;@;i€;;;@;i ;	[ ;i€o;;["-moz-transform-origin;o;+	;,;-;[o;	;"	left;@;"	left;io;	;"top;@;"top;i;@;i;;;@;i ;	[ ;io;;["transform-origin;o;+	;,;-;[o;	;"	left;@;"	left;i‚o;	;"top;@;"top;i‚;@;i‚;;;@;i ;	[ ;i‚;40;i;5[[o;;"	left;@;"	left0[o;;"top;@;"top0o;
+
+;;;["Î/* Backface visibility
+ * --------------------------------------------------
+ * Prevent browsers from flickering when using CSS 3D transforms.
+ * Default value is `visible`, but can be changed to `hidden */;@;	[ ;i†o;;"backface-visibility;T;@;	[o;;[" -webkit-backface-visibility;o;	;"visibility;@;"visibility;iŒ;;;@;i ;	[ ;iŒo;;["backface-visibility;o;	;"visibility;@;"visibility;i;;;@;i ;	[ ;i;40;i‹;5[[o;;"visibility;@;"visibility0o;
+
+;;;["T/* Background clipping
+ * -------------------------------------------------- */;@;	[ ;i‘o;;"background-clip;T;@;	[o;;["-webkit-background-clip;o;	;"	clip;@;"	clip;i•;;;@;i ;	[ ;i•o;;["-moz-background-clip;o;	;"	clip;@;"	clip;i–;;;@;i ;	[ ;i–o;;["background-clip;o;	;"	clip;@;"	clip;i—;;;@;i ;	[ ;i—;40;i”;5[[o;;"	clip;@;"	clip0o;
+
+;;;["R/* Background sizing
+ * -------------------------------------------------- */;@;	[ ;i›o;;"background-size;T;@;	[o;;["-webkit-background-size;o;	;"	size;@;"	size;iŸ;;;@;i ;	[ ;iŸo;;["-moz-background-size;o;	;"	size;@;"	size;i ;;;@;i ;	[ ;i o;;["background-size;o;	;"	size;@;"	size;i¡;;;@;i ;	[ ;i¡;40;iž;5[[o;;"	size;@;"	size0o;
+
+;;;["K/* Box sizing
+ * -------------------------------------------------- */;@;	[ ;i¥o;;"box-sizing;T;@;	[o;;["-webkit-box-sizing;o;	;"boxmodel;@;"boxmodel;i©;;;@;i ;	[ ;i©o;;["-moz-box-sizing;o;	;"boxmodel;@;"boxmodel;iª;;;@;i ;	[ ;iªo;;["box-sizing;o;	;"boxmodel;@;"boxmodel;i«;;;@;i ;	[ ;i«;40;i¨;5[[o;;"boxmodel;@;"boxmodel0o;
+
+;;;["L/* User select
+ * -------------------------------------------------- */;@;	[ ;i¯o;;"user-select;T;@;	[	o;;["-webkit-user-select;o;	;"select;@;"select;i³;;;@;i ;	[ ;i³o;;["-moz-user-select;o;	;"select;@;"select;i´;;;@;i ;	[ ;i´o;;["-ms-user-select;o;	;"select;@;"select;iµ;;;@;i ;	[ ;iµo;;["user-select;o;	;"select;@;"select;i¶;;;@;i ;	[ ;i¶;40;i²;5[[o;;"select;@;"select0o;
+
+;;;["P/* Content Columns
+ * -------------------------------------------------- */;@;	[ ;iºo;;"content-columns;T;@;	[o;;["-webkit-column-count;o;	;"columnCount;@;"columnCount;i¾;;;@;i ;	[ ;i¾o;;["-moz-column-count;o;	;"columnCount;@;"columnCount;i¿;;;@;i ;	[ ;i¿o;;["column-count;o;	;"columnCount;@;"columnCount;iÀ;;;@;i ;	[ ;iÀo;;["-webkit-column-gap;o;	;"columnGap;@;"columnGap;iÁ;;;@;i ;	[ ;iÁo;;["-moz-column-gap;o;	;"columnGap;@;"columnGap;iÂ;;;@;i ;	[ ;iÂo;;["column-gap;o;	;"columnGap;@;"columnGap;iÃ;;;@;i ;	[ ;iÃ;40;i½;5[[o;;"columnCount;@;"columnCount0[o;;"columnGap;@;"columnGapo;	;"grid-gutter-width;@;"grid_gutter_width;i½o;
+
+;;;["³/* Flexbox Mixins
+ * --------------------------------------------------
+ * http://philipwalton.github.io/solved-by-flexbox/
+ * https://github.com/philipwalton/solved-by-flexbox */;@;	[ ;iÇo;;"display-flex;T;@;	[o;;["display;o;';;(;"-webkit-box;@;;;@;i ;	[ ;iÍo;;["display;o;';;(;"-webkit-flex;@;;;@;i ;	[ ;iÎo;;["display;o;';;(;"-moz-box;@;;;@;i ;	[ ;iÏo;;["display;o;';;(;"-moz-flex;@;;;@;i ;	[ ;iÐo;;["display;o;';;(;"-ms-flexbox;@;;;@;i ;	[ ;iÑo;;["display;o;';;(;"	flex;@;;;@;i ;	[ ;iÒ;40;iÌ;5[ o;;"dislay-inline-flex;T;@;	[
+o;;["display;o;';;(;"-webkit-inline-box;@;;;@;i ;	[ ;iÖo;;["display;o;';;(;"-webkit-inline-flex;@;;;@;i ;	[ ;i×o;;["display;o;';;(;"-moz-inline-flex;@;;;@;i ;	[ ;iØo;;["display;o;';;(;"-ms-inline-flexbox;@;;;@;i ;	[ ;iÙo;;["display;o;';;(;"inline-flex;@;;;@;i ;	[ ;iÚ;40;iÕ;5[ o;;"flex-direction;T;@;	[
+u;6[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@lineiÞ;@	;iÞ:@operand2o:Sass::Script::String	:
+@type:identifier:@value"row-reverse;@	;iÞu:Sass::Tree::IfNode¸[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@lineiá;@	;iá:@operand2o:Sass::Script::String	:
+@type:identifier:@value"column;@	;iáu:Sass::Tree::IfNodeè[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@lineiä;@	;iä:@operand2o:Sass::Script::String	:
+@type:identifier:@value"column-reverse;@	;iäu:Sass::Tree::IfNode[00[o:Sass::Tree::PropNode:
+@name["-webkit-box-direction:@valueo:Sass::Script::String:
+@type:identifier;"normal:@options{ :@prop_syntax:new;@:
+@tabsi :@children[ :
+@lineièo; ;["-webkit-box-orient;o;;	;
+;"horizontal;@;;;@;i ;[ ;ié[o:Sass::Tree::PropNode;
+["-webkit-box-direction;o;;;;"reverse;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;iåo;;
+["-webkit-box-orient;o;;;;"vertical;@	;;;@	;i ;[ ;iæ[o:Sass::Tree::PropNode;
+["-webkit-box-direction;o;;;;"normal;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;iâo;;
+["-webkit-box-orient;o;;;;"vertical;@	;;;@	;i ;[ ;iã[o:Sass::Tree::PropNode;
+["-webkit-box-direction;o;;;;"reverse;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;ißo;;
+["-webkit-box-orient;o;;;;"horizontal;@	;;;@	;i ;[ ;iào;;["-webkit-flex-direction;o;	;"
+value;@;"
+value;ië;;;@;i ;	[ ;iëo;;["-moz-flex-direction;o;	;"
+value;@;"
+value;iì;;;@;i ;	[ ;iìo;;["-ms-flex-direction;o;	;"
+value;@;"
+value;ií;;;@;i ;	[ ;iío;;["flex-direction;o;	;"
+value;@;"
+value;iî;;;@;i ;	[ ;iî;40;iÝ;5[[o;;"
+value;@;"
+valueo;'	;;(;"row;@;iÝo;;"flex-wrap;T;@;	[
+o;
+
+;;;[""/* No Webkit Box fallback. */;@;	[ ;iòo;;["-webkit-flex-wrap;o;	;"
+value;@;"
+value;ió;;;@;i ;	[ ;ióo;;["-moz-flex-wrap;o;	;"
+value;@;"
+value;iô;;;@;i ;	[ ;iôu;6@[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@lineiõ;@	;iõ:@operand2o:Sass::Script::String	:
+@type:identifier:@value"nowrap;@	;iõu:Sass::Tree::IfNodeÇ[00[o:Sass::Tree::PropNode:
+@name["-ms-flex-wrap:@valueo:Sass::Script::Variable	;"
+value:@options{ :@underscored_name"
+value:
+@lineiø:@prop_syntax:new;	@:
+@tabsi :@children[ ;iø[o:Sass::Tree::PropNode;
+["-ms-flex-wrap;o;;;;"	none;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;iöo;;["flex-wrap;o;	;"
+value;@;"
+value;iú;;;@;i ;	[ ;iú;40;iñ;5[[o;;"
+value;@;"
+valueo;'	;;(;"nowrap;@;iño;;"	flex;T;@;	[o;;["-webkit-box-flex;o;	;"fg;@;"fg;iþ;;;@;i ;	[ ;iþo;;["-webkit-flex;o;+	;,;-;[o;	;"fg;@;"fg;iÿo;	;"fs;@;"fs;iÿo;	;"fb;@;"fb;iÿ;@;iÿ;;;@;i ;	[ ;iÿo;;["-moz-box-flex;o;	;"fg;@;"fg;i ;;;@;i ;	[ ;i o;;["-moz-flex;o;+	;,;-;[o;	;"fg;@;"fg;io;	;"fs;@;"fs;io;	;"fb;@;"fb;i;@;i;;;@;i ;	[ ;io;;["-ms-flex;o;+	;,;-;[o;	;"fg;@;"fg;io;	;"fs;@;"fs;io;	;"fb;@;"fb;i;@;i;;;@;i ;	[ ;io;;["	flex;o;+	;,;-;[o;	;"fg;@;"fg;io;	;"fs;@;"fs;io;	;"fb;@;"fb;i;@;i;;;@;i ;	[ ;i;40;iý;5[[o;;"fg;@;"fgo;.;/@};i;@;0[ ;1"1;iý[o;;"fs;@;"fso:Sass::Script::Null;0;@;iý[o;;"fb;@;"fbo;:;0;@;iýo;;"flex-flow;T;@;	[
+o;
+
+;;;[""/* No Webkit Box fallback. */;@;	[ ;io;;["-webkit-flex-flow;o;	;"values;@;"values;i;;;@;i ;	[ ;io;;["-moz-flex-flow;o;	;"values;@;"values;i	;;;@;i ;	[ ;i	o;;["-ms-flex-flow;o;	;"values;@;"values;i
+;;;@;i ;	[ ;i
+o;;["flex-flow;o;	;"values;@;"values;i;;;@;i ;	[ ;i;40;i;5[[o;;"values;@;"valueso;+	;,;-;[o;'	;;(;"row;@;io;'	;;(;"nowrap;@;i;@;io;;"align-items;T;@;	[	u;6¥[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei;@	;i:@operand2o:Sass::Script::String	:
+@type:identifier:@value"flex-start;@	;iu:Sass::Tree::IfNodeÝ[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei;@	;i:@operand2o:Sass::Script::String	:
+@type:identifier:@value"flex-end;@	;iu:Sass::Tree::IfNode[00[o:Sass::Tree::PropNode:
+@name["-webkit-box-align:@valueo:Sass::Script::Variable	;"
+value:@options{ :@underscored_name"
+value:
+@linei:@prop_syntax:new;	@:
+@tabsi :@children[ ;io; ;["-ms-flex-align;o;	;"
+value;	@;
+"
+value;i;;;	@;i ;[ ;i[o:Sass::Tree::PropNode;
+["-webkit-box-align;o;;;;"end;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;io;;
+["-ms-flex-align;o;;;;"end;@	;;;@	;i ;[ ;i[o:Sass::Tree::PropNode;
+["-webkit-box-align;o;;;;"
+start;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;io;;
+["-ms-flex-align;o;;;;"
+start;@	;;;@	;i ;[ ;io;;["-webkit-align-items;o;	;"
+value;@;"
+value;i;;;@;i ;	[ ;io;;["-moz-align-items;o;	;"
+value;@;"
+value;i;;;@;i ;	[ ;io;;["align-items;o;	;"
+value;@;"
+value;i;;;@;i ;	[ ;i;40;i;5[[o;;"
+value;@;"
+valueo;'	;;(;"stretch;@;io;;"align-self;T;@;	[	o;;["-webkit-align-self;o;	;"
+value;@;"
+value;i;;;@;i ;	[ ;io;;["-moz-align-self;o;	;"
+value;@;"
+value;i ;;;@;i ;	[ ;i u;6Ò[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei!;@	;i!:@operand2o:Sass::Script::String	:
+@type:identifier:@value"flex-start;@	;i!u:Sass::Tree::IfNodeM[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei#;@	;i#:@operand2o:Sass::Script::String	:
+@type:identifier:@value"flex-end;@	;i#u:Sass::Tree::IfNodeÍ[00[o:Sass::Tree::PropNode:
+@name["-ms-flex-item-align:@valueo:Sass::Script::Variable	;"
+value:@options{ :@underscored_name"
+value:
+@linei&:@prop_syntax:new;	@:
+@tabsi :@children[ ;i&[o:Sass::Tree::PropNode;
+["-ms-flex-item-align;o;;;;"end;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;i$[o:Sass::Tree::PropNode;
+["-ms-flex-item-align;o;;;;"
+start;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;i"o;;["align-self;o;	;"
+value;@;"
+value;i(;;;@;i ;	[ ;i(;40;i;5[[o;;"
+value;@;"
+valueo;'	;;(;"	auto;@;io;;"align-content;T;@;	[	o;;["-webkit-align-content;o;	;"
+value;@;"
+value;i,;;;@;i ;	[ ;i,o;;["-moz-align-content;o;	;"
+value;@;"
+value;i-;;;@;i ;	[ ;i-u;6Ï[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei.;@	;i.:@operand2o:Sass::Script::String	:
+@type:identifier:@value"flex-start;@	;i.u:Sass::Tree::IfNodeK[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei0;@	;i0:@operand2o:Sass::Script::String	:
+@type:identifier:@value"flex-end;@	;i0u:Sass::Tree::IfNodeÌ[00[o:Sass::Tree::PropNode:
+@name["-ms-flex-line-pack:@valueo:Sass::Script::Variable	;"
+value:@options{ :@underscored_name"
+value:
+@linei3:@prop_syntax:new;	@:
+@tabsi :@children[ ;i3[o:Sass::Tree::PropNode;
+["-ms-flex-line-pack;o;;;;"end;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;i1[o:Sass::Tree::PropNode;
+["-ms-flex-line-pack;o;;;;"
+start;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;i/o;;["align-content;o;	;"
+value;@;"
+value;i5;;;@;i ;	[ ;i5;40;i+;5[[o;;"
+value;@;"
+valueo;'	;;(;"stretch;@;i+o;;"justify-content;T;@;	[	u;6l[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei9;@	;i9:@operand2o:Sass::Script::String	:
+@type:identifier:@value"flex-start;@	;i9u:Sass::Tree::IfNode¦[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei<;@	;i<:@operand2o:Sass::Script::String	:
+@type:identifier:@value"flex-end;@	;i<u:Sass::Tree::IfNodeæ[o:Sass::Script::Operation
+:@operator:eq:@operand1o:Sass::Script::Variable	:
+@name"
+value:@options{ :@underscored_name"
+value:
+@linei?;@	;i?:@operand2o:Sass::Script::String	:
+@type:identifier:@value"space-between;@	;i?u:Sass::Tree::IfNode[00[o:Sass::Tree::PropNode:
+@name["-webkit-box-pack:@valueo:Sass::Script::Variable	;"
+value:@options{ :@underscored_name"
+value:
+@lineiC:@prop_syntax:new;	@:
+@tabsi :@children[ ;iCo; ;["-ms-flex-pack;o;	;"
+value;	@;
+"
+value;iD;;;	@;i ;[ ;iD[o:Sass::Tree::PropNode;
+["-webkit-box-pack;o;;;;"justify;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;i@o;;
+["-ms-flex-pack;o;;;;"justify;@	;;;@	;i ;[ ;iA[o:Sass::Tree::PropNode;
+["-webkit-box-pack;o;;;;"end;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;i=o;;
+["-ms-flex-pack;o;;;;"end;@	;;;@	;i ;[ ;i>[o:Sass::Tree::PropNode;
+["-webkit-box-pack;o;;;;"
+start;@	:@prop_syntax:new;@	:
+@tabsi :@children[ ;i:o;;
+["-ms-flex-pack;o;;;;"
+start;@	;;;@	;i ;[ ;i;o;;["-webkit-justify-content;o;	;"
+value;@;"
+value;iF;;;@;i ;	[ ;iFo;;["-moz-justify-content;o;	;"
+value;@;"
+value;iG;;;@;i ;	[ ;iGo;;["justify-content;o;	;"
+value;@;"
+value;iH;;;@;i ;	[ ;iH;40;i8;5[[o;;"
+value;@;"
+valueo;'	;;(;"stretch;@;i8;i

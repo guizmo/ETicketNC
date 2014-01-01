@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+<!--     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>ETicketNC</title>
+    <!-- ionic css -->
+    <link href="css/ionic.css" rel="stylesheet">
+
+    <!-- app's css -->
+    <link href="css/app.css" rel="stylesheet">
+
+</head>
+<body class="ionic-body logged-out scanner-off">
+
+
+    <div class="bar bar-header">
+      <a id="back-btn" class="button icon-left ion-chevron-left button-clear button-dark hidden"></a>
+      <div class="h1 title">Se connecter à un guichet</div>
+      <a id="sync-btn" class="button button-block icon-left ion-loop button-assertive hidden"></a>
+    </div>
+    <div id="main" class="content has-header">
+		<form id="loginForm" class="list">
+			<label class="item item-input">
+				<span class="input-label">Identifiant</span>
+				<input name="user" id="user" type="text" value="uservalue"/>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mot de pass</span>
+				<input name="password" id="password"  type="password" value="passvalue"/>
+			</label>
+			<div class="padding">
+				<button id="connector" class="button button-block button-positive">Connexion</button>
+			</div>
+		</form>
+		<div id="event-list"></div>
+		<div id="event"></div>
+    </div>
+  
+  
+    <script src="cordova.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/ionic.js"></script>
+    <script src="js/handlebars-v1.2.0.js"></script>
+    <script src="js/utils.js"></script>
+<!--     <script src="js/user.js"></script> -->
+    <script src="js/index.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+</body>
+</html>

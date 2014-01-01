@@ -17,21 +17,37 @@ html {
 }
 
 /* line 20, ../sass/app.scss */
-.logged-out #event-list {
+#sync-btn,
+#logout-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+}
+
+/*
+.logged-out{
+	#event-list{
+		display: none;
+	}
+}
+
+.logged-in{
+	#event-list{
+		display: block;
+	}
+	
+	#loginForm{
+		display: none;
+	}
+}
+*/
+/* line 45, ../sass/app.scss */
+#event, #event-list {
   display: none;
 }
 
-/* line 26, ../sass/app.scss */
-.logged-in #loginForm {
-  display: none;
-}
-
-/* line 31, ../sass/app.scss */
-#event {
-  display: none;
-}
-
-/* line 35, ../sass/app.scss */
+/* line 49, ../sass/app.scss */
 .full-height {
   position: absolute;
   top: 0;
@@ -40,33 +56,83 @@ html {
   right: 0;
 }
 
-/* line 41, ../sass/app.scss */
+/* line 55, ../sass/app.scss */
 .scanner-off {
   background: white;
 }
-/* line 44, ../sass/app.scss */
+/* line 58, ../sass/app.scss */
 .scanner-off #scanner-view {
   display: none;
 }
-/* line 47, ../sass/app.scss */
+/* line 61, ../sass/app.scss */
 .scanner-off #result-view {
   display: block;
 }
 
-/* line 52, ../sass/app.scss */
+/* line 66, ../sass/app.scss */
 .scanner-on {
   background: transparent;
 }
-/* line 55, ../sass/app.scss */
+/* line 69, ../sass/app.scss */
 .scanner-on #scanner-view {
   display: block;
 }
-/* line 58, ../sass/app.scss */
+/* line 72, ../sass/app.scss */
 .scanner-on #result-view {
   display: none;
 }
 
-/* line 64, ../sass/app.scss */
+/* line 78, ../sass/app.scss */
 body.scanner-off[data-page="scanner-view"] #back-btn.hidden, body.scanner-off[data-page="scanner-view"] #sync-btn.hidden {
   display: block;
+}
+
+/* line 85, ../sass/app.scss */
+body[data-page="scanner-view"] #event-list, body[data-page="scanner-view"] #loginForm {
+  display: none;
+}
+/* line 89, ../sass/app.scss */
+body[data-page="scanner-view"] #event {
+  display: block;
+}
+
+/* line 97, ../sass/app.scss */
+body[data-page="events-view"] #logout-btn.hidden {
+  display: block;
+}
+/* line 101, ../sass/app.scss */
+body[data-page="events-view"] #event, body[data-page="events-view"] #loginForm {
+  display: none;
+}
+/* line 105, ../sass/app.scss */
+body[data-page="events-view"] #event-list {
+  display: block;
+}
+
+/* line 112, ../sass/app.scss */
+body[data-page="loggin-view"] #logout-btn.hidden {
+  display: none;
+}
+/* line 116, ../sass/app.scss */
+body[data-page="loggin-view"] #event-list, body[data-page="loggin-view"] #event {
+  display: none;
+}
+/* line 120, ../sass/app.scss */
+body[data-page="loggin-view"] #loginForm {
+  display: block;
+}
+
+/* line 126, ../sass/app.scss */
+#ticket-scanned.status-on .item {
+  background: #66cc33;
+  color: white;
+}
+/* line 131, ../sass/app.scss */
+#ticket-scanned.status-fail .item {
+  background: #ef4e3a;
+  color: white;
+}
+/* line 136, ../sass/app.scss */
+#ticket-scanned #count {
+  line-height: 30px;
 }

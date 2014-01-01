@@ -19,40 +19,10 @@ var user = {
 				console.log(err)
 				user.isLogged = false;
 			},
-			complete: onComplete/*
-: function(data){
-				console.log(data)
-			}
-*/
+			complete: onComplete
 		});
 
 	
 		
 	}
 }	
-	
-	
-	
-/*
-	scope.login = function() {
-		var config = {method: 'GET', url: 'http://localhost:8888/services/'} // configuration object
-		
-		$http(config)
-		.success(function(data, status, headers, config) {
-			console.log(data)
-			if (data.status) {
-				// succefull login
-				User.isLogged = true;
-				User.username = data.username;
-			}
-			else {
-				User.isLogged = false;
-				User.username = '';
-			}
-		})
-		.error(function(data, status, headers, config) {
-			User.isLogged = false;
-			User.username = '';
-		});
-	}
-*/

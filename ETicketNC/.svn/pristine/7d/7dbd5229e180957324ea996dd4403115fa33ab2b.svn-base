@@ -1,0 +1,67 @@
+@import "variables";
+
+html{
+	background: transparent;
+}
+
+#main {
+	overflow-y: scroll; /* has to be scroll, not auto */
+	-webkit-overflow-scrolling: touch;
+	overflow-x: hidden !important;
+}
+
+.platform-ios7{
+	.content.has-header{
+		padding-bottom: 64px;
+	}
+}
+
+.logged-out{
+	#event-list{
+		display: none;
+	}
+}
+
+.logged-in{
+	#loginForm{
+		display: none;
+	}
+}
+
+#event{
+	display: none;
+}
+
+.full-height{
+	position: absolute;
+	top: 0; bottom: 64px;
+	left: 0; right: 0;
+}
+
+.scanner-off{
+	background: $light;
+
+	#scanner-view{
+		display: none;
+	}
+	#result-view{
+		display: block;
+	}
+}
+
+.scanner-on{
+	background: transparent;
+	
+	#scanner-view{
+		display: block;
+	}
+	#result-view{
+		display: none;
+	}
+}
+
+body.scanner-off[data-page="scanner-view"]{
+	#back-btn.hidden, #sync-btn.hidden{
+		display: block;
+	}
+}

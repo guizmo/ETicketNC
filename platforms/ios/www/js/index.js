@@ -20,7 +20,6 @@ var app = {
 	vibration: true,
 	sound: true,
 	deviceOS: null,
-	//serviceUrl: 'http://localhost:8888/services/',
 	serviceUrl: 'http://dev.guillaume-bartolini.com/services/',
 	events: {},
 	userIsLogged: false,
@@ -35,7 +34,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener('deviceresume', this.onDeviceResume, false);
+        document.addEventListener('resume', this.onDeviceResume, false);
     },
     // deviceready Event Handler
     //
@@ -43,7 +42,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        //app.startApp();
+
         startApp.init();
         
 		ionic.Platform.detect();
@@ -51,12 +50,12 @@ var app = {
 		
 	    setTimeout(function() {
 	        navigator.splashscreen.hide();
-	    }, 1000);
+	    }, 500);
 	    
     },
     
     onDeviceResume: function() {
-	    app.receivedEvent('deviceresume');	    
+	    app.receivedEvent('resume');	    
     },
 
     // Update DOM on a Received Event
@@ -64,7 +63,7 @@ var app = {
 
         console.log('Received Event: ' + id);
         
-        if(id == 'deviceready' || id == 'deviceresume'){
+        if(id == 'deviceready' || id == 'resume'){
 	        app.getAppSettings();
         }
     },
@@ -80,14 +79,14 @@ var app = {
 	
 		
 		window.applicationPreferences.get("enabled_vibration", function(value) {
-	        app.vibration = value;
+	        app.vibration = parseInt(value);
 	    }, function(error) {
 	        console.log("Error! " + JSON.stringify(error));
 		});		
 		
 		
 		window.applicationPreferences.get("enabled_beep", function(value) {
-	        app.sound = value;
+	        app.sound = parseInt(value);
 	    }, function(error) {
 	        console.log("Error! " + JSON.stringify(error));
 		});		

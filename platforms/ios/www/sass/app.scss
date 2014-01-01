@@ -16,6 +16,15 @@ html{
 	}
 }
 
+#sync-btn,
+#logout-btn{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	bottom: 5px;
+}
+
+/*
 .logged-out{
 	#event-list{
 		display: none;
@@ -23,12 +32,17 @@ html{
 }
 
 .logged-in{
+	#event-list{
+		display: block;
+	}
+	
 	#loginForm{
 		display: none;
 	}
 }
+*/
 
-#event{
+#event, #event-list{
 	display: none;
 }
 
@@ -63,5 +77,64 @@ html{
 body.scanner-off[data-page="scanner-view"]{
 	#back-btn.hidden, #sync-btn.hidden{
 		display: block;
+	}	
+}
+
+body[data-page="scanner-view"]{
+
+	#event-list, #loginForm{
+		display: none;
+	}
+
+	#event{
+		display: block;
+	}
+
+}
+
+
+body[data-page="events-view"]{
+	#logout-btn.hidden{
+		display: block;
+	}
+
+	#event, #loginForm{
+		display: none;
+	}
+
+	#event-list{
+		display: block;
 	}
 }
+
+
+body[data-page="loggin-view"]{
+	#logout-btn.hidden{
+		display: none;
+	}
+
+	#event-list, #event{
+		display: none;
+	}
+
+	#loginForm{
+		display: block;
+	}
+}
+
+#ticket-scanned{
+	&.status-on .item{
+		background: $balanced;
+		color: $light;
+	}
+	
+	&.status-fail .item{
+		background: $assertive;
+		color: $light;
+	}
+	
+	#count{
+		line-height: 30px;
+	}
+}
+

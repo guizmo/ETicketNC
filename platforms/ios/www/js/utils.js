@@ -25,10 +25,11 @@ var utils = {
 		});
 	},
 	
-	loadEventData: function(id, onComplete){
+	loadEventData: function(id, dataQuery, onComplete){
 		$.ajax({
 			type: "POST",
 			url: app.serviceUrl + 'event/' + id,
+			data: dataQuery,
 			dataType: 'json',
 			timeout: 10000,
 			success: function(msg){
@@ -44,6 +45,21 @@ var utils = {
 	updateTPageInfo: function(title, pageClass){
 		$('.bar-header .title').text(title);
 		$('body').data('page', pageClass)
-	}
+	},
+	
+	sync: function(id){
+		//simulate "sync is done" action for now
+		app.events[id].hasSynced = true;
+		console.log('sync');
+		console.log(id);
+		console.log(app.events[id]);
+		this.saveToStorage();
+	},
+			
+	saveToStorage: function(){
+		console.log('saveToStorage');
+		window.localStorage.setItem('events', JSON.stringify( app.events ) );
+	},
+	
 	
 };

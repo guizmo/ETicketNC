@@ -18,17 +18,9 @@
 			<key>Title</key>
 			<string>Vibrations</string>
 			<key>Key</key>
-			<string>enabaled_vibrations</string>
+			<string>enabled_vibration</string>
 			<key>DefaultValue</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string></string>
-			<key>Key</key>
-			<string></string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -39,20 +31,6 @@
 			<string>enabled_beep</string>
 			<key>DefaultValue</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>test</string>
-			<key>Key</key>
-			<string>test</string>
-			<key>DefaultValue</key>
-			<array>
-				<string>1</string>
-				<string>2</string>
-				<string>3</string>
-			</array>
 		</dict>
 	</array>
 </dict>
