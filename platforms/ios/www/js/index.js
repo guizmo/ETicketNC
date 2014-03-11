@@ -20,9 +20,18 @@ var app = {
 	vibration: true,
 	sound: true,
 	deviceOS: null,
-	serviceUrl: 'http://dev.guillaume-bartolini.com/services/',
+	//serviceUrl: 'http://services.guillaume/',
+	serviceUrl: 'http://10.11.0.179/services/',
+	portal: 'http://www.eticket.nc/?option=com_ouiz',
+	//portal: 'http://10.11.0.179/services/portal/',
 	events: {},
-	userIsLogged: false,
+	user: {
+		isLogged: false,
+		hash: null,
+		guichet: null,
+		id_guichet: null,
+		isOnline: false
+	},
 
     // Application Constructor
     initialize: function() {

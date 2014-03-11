@@ -3,7 +3,7 @@
 		<div class="card">
 			<div class="item item-text-wrap row">
 				<div id="scan-result" class="col col-80">...</div>
-				<div id="count" class="right">{{scanned}}/{{total}}</div>
+				<div id="count" class="right"><span id="scanned-count">{{infos.scanned}}</span>/{{infos.total}}</div>
 			</div>
 		</div>
 	</div>
@@ -16,9 +16,11 @@
 
 <div id="result-view" class="full-height">
 	<div id="result" class="padding">
-		<div id="total-ticket">Nombre de ticket disponibles : {{total}}</div>
-		<div id="scanned-tickets">Nombre de ticket scannés : {{scanned}}</div>
-		<div id="to-scan-tickets">Nombre de ticket restant : {{toScan}}</div>
+		<h5 class="sub-title">{{title}}</h5>
+		<div id="total-ticket">Nombre de tickets pour cet évènement : {{infos.total}}</div>
+		<div id="scanned-tickets">Nombre de tickets scannés : <span id="scanned">{{infos.scanned}}</span></div>
+		<div id="scanned-guichet">Nombre de tickets scannés par ce guichet : <span id="guichetCount">{{infos.guichet}}</span></div>
+		<a id="sync-btn" class="button button-block icon-left ion-loop button-positive">Synchroniser avec le server</a>
 	</div>
 	
 

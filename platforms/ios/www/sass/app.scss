@@ -16,7 +16,7 @@ html{
 	}
 }
 
-#sync-btn,
+//#sync-btn,
 #logout-btn{
 	position: absolute;
 	top: 5px;
@@ -81,7 +81,6 @@ body.scanner-off[data-page="scanner-view"]{
 }
 
 body[data-page="scanner-view"]{
-
 	#event-list, #loginForm{
 		display: none;
 	}
@@ -103,7 +102,12 @@ body[data-page="events-view"]{
 	}
 
 	#event-list{
+		padding-bottom: 30px;
 		display: block;
+		
+		a.item{
+			white-space: normal;
+		}
 	}
 }
 
