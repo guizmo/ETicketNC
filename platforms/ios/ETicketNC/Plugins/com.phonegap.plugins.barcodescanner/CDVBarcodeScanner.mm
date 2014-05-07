@@ -37,7 +37,7 @@
         // Creating
         widgetController = [[CustomBarcodeViewController alloc] initWithPlugin:self callbackId:command.callbackId];
         // Presenting
-        [self.viewController presentModalViewController:widgetController animated:YES];
+        [self.viewController presentViewController:widgetController animated:YES completion:nil];
     }  else {
         // If we already have it, then we only reset it (i.e. prepare it for a new scan)
         [widgetController reset];
@@ -56,7 +56,7 @@
         [self.webView removeFromSuperview];
         
         // Dismissing barcode scanner controller
-        [widgetController dismissModalViewControllerAnimated:YES];
+        [widgetController dismissViewControllerAnimated:YES completion:nil];
         
         // Reattaching webview
         if(SYSTEM_VERSION_LESS_THAN(@"7.0") && self.webView.frame.origin.y < 20) {
