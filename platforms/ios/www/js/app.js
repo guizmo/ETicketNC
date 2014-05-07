@@ -321,13 +321,13 @@ var startApp = {
 			$('#back-btn').on('tap', function(){
 				console.log('sync !');
 				if(!app.events[parent_id]['seances'][id].hasScanned){
-					console.log('sync 1 !');
-					console.log(app.events[parent_id]['seances'][id].hasScanned)
+					//console.log('sync 1 !');
+					//console.log(app.events[parent_id]['seances'][id].hasScanned)
 					utils.updateTPageInfo('Choisir un évènement', 'events-view');
 				}else{
 					function onConfirm(buttonIndex) {
-						console.log('sync 2 !');
-						console.log(buttonIndex)
+						//console.log('sync 2 !');
+						//console.log(buttonIndex)
 						
 						if(buttonIndex == 1){
 							utils.sync(parent_id, id);
@@ -346,32 +346,47 @@ var startApp = {
 			            ['Oui','Non']
 					);
 				}
-			})
+			});
 			
 			$('#sync-btn').on('tap', function(){
-				console.log('sync 3!');
-				console.log(parent_id + ' AND ' + id);
+				//console.log('sync 3!');
+				//console.log(parent_id + ' AND ' + id);
 				utils.sync(parent_id, id);
 			})
 			
 			$('#close a').on('tap', function(){
-				console.log('CLOSE SCAN');
-				plugins.barcodeScanner.dismiss();
-				$('body').removeClass('scanner-on').addClass('scanner-off');
-				
-				window.setInterval(function(){
-				  console.log('waiting-card hidden')
-				  $('#waiting-card').addClass('hidden');
-				  
-				}, 5000);				
-				
+				//console.log('CLOSE SCAN CLICKED');
+				$('body').removeClass('scanner-on').addClass('scanner-off');	
+				plugins.barcodeScanner.dismiss();			
+				//console.log('DISMISS');
 			})
 	
 			$('#scan a').on('tap', function(){
-				console.log('OPEN SCAN');
-				self.scanner(parent_id, id);
+				//console.log('OPEN SCAN');
+
+				
 				$('body').removeClass('scanner-off').addClass('scanner-on');
-			})
+				self.scanner(parent_id, id);
+			});
+			
+/*
+			function start() {
+				myInterval = setInterval(function(){
+					myTimer();
+				}, 5000);
+			}
+			
+			function myTimer() {
+				console.log('waiting-card hidden');
+				$('#waiting-card').addClass('hidden');
+			}
+			
+			function myStopFunction(myInterval) {
+				console.log('myStopFunction');	
+			    clearInterval(myInterval);
+			}
+*/
+			
         });
 	},
 	
