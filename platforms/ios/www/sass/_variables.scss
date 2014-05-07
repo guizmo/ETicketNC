@@ -5,12 +5,15 @@
 $light:                 #fff !default;
 $stable:                #f8f8f8 !default;
 $positive:              #4a87ee !default;
-$calm:                  #43cee6 !default;
+$calm:                  #3bb2c3 !default;
 $balanced:              #66cc33 !default;
-$energized:             #f0b840 !default;
+$energized:             #f8b334 !default;
 $assertive:             #ef4e3a !default;
 $royal:                 #8a6de9 !default;
-$dark:                  #444 !default;
+$dark:                  #222 !default;
+
+$darkerCalm:            darken($calm, 15%);
+$darkerEnergized:       darken($energized, 15%);
 
 
 

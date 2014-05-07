@@ -1,4 +1,8 @@
 @import "variables";
+*{
+	-webkit-touch-callout: none;
+	//-webkit-user-select: none; 
+}
 
 html{
 	background: transparent;
@@ -8,6 +12,7 @@ html{
 	overflow-y: scroll; /* has to be scroll, not auto */
 	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden !important;
+	background: #222;
 }
 
 .platform-ios7{
@@ -16,12 +21,35 @@ html{
 	}
 }
 
+
+#logo{
+	display: block;
+	margin: 0 auto;
+	width: 80%;
+	padding: 20px 0;
+}
+
 //#sync-btn,
 #logout-btn{
 	position: absolute;
 	top: 5px;
 	right: 5px;
 	bottom: 5px;
+}
+
+.item-parent.wrapper{
+	.item:active{
+		opacity: 0.7;
+	}
+	a.item::after{
+		color: #fff;
+	}
+}
+
+.light{
+	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+		color: $light;
+	}
 }
 
 /*
@@ -52,6 +80,10 @@ html{
 	left: 0; right: 0;
 }
 
+.platform-ios6 .full-height{
+	bottom: 44px;
+}
+
 .scanner-off{
 	background: $light;
 
@@ -66,11 +98,26 @@ html{
 .scanner-on{
 	background: transparent;
 	
+	#main{
+		background: transparent;
+	}
+	
 	#scanner-view{
 		display: block;
 	}
 	#result-view{
 		display: none;
+	}
+}
+
+#event{
+	.bar.bar-footer .title{
+		line-height: 44px;
+		margin: 0;
+		
+	}
+	.bar.bar-footer:active{
+		opacity: 0.7;
 	}
 }
 

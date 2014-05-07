@@ -11,19 +11,31 @@ var startApp = {
 		    self = this;
 		
 		utils.updateTPageInfo('Se connecter à un guichet', 'loggin-view');
+
+		$('#loginForm input').on('focus', function(e) {
+		    e.preventDefault();
+		    e.stopPropagation();
 		    
+		    $('#main').scrollTop($('#formContent').height());
+		    
+		});
+		
+
+
 	    logginForm.on('submit', function(e){
 		    var formVals = $(this).serialize();
 		    
 			e.preventDefault();
 			
+			$('#loginForm input').blur();
+			
 			if($('#username').val() == '' || $('#password').val() == ''){
 				function alertDismissed() {
-				    // do something
+				    $('#username').focus();
 				}
 				
 				navigator.notification.alert(
-				    'L\'identifiant et mot de pass doivent être renseignés',
+				    'L\'identifiant et mot de passe doivent être renseignés',
 				    alertDismissed,
 				    'Formulaire incomplet',
 				    'Fermer'
@@ -41,7 +53,7 @@ var startApp = {
 					credential = window.localStorage.getItem('credential'),
 					dataResponse = data.response;
 				
-				console.log(data);
+				//console.log(data);
 				
 
 				if(dataResponse.length){
@@ -96,49 +108,29 @@ var startApp = {
 					
 						//now that we have some events to choose from
 						self.loadEventTickets();
+						
+						
+						$('#loginForm input').val('');
 			        });
 				}
 				
 				
 				if(app.user.isLogged){
 					window.localStorage.setItem('credential', formVals );
-					console.log('is connected');
+					//console.log('is connected');
 
 					if(response && response.success && response.data ){
 
 						var userData = response['data'];
-						console.log(response);
+						//console.log(response);
 						handleData(userData, 'online');
-/*
-
-						body.addClass('logged-in').removeClass('logged-out');
-	
-						app.events = userData.evenements;
-		
-						var events = {
-							events: userData.evenements,
-							guichet: app.user.id_guichet,
-							id_guichet: app.user.id_guichet
-						}
-		
-						utils.loadTpl('events-list', function (data) {
-				            var source = data;
-				            template = Handlebars.compile(source);
-							
-							var eventListHtml = template(events)
-							//console.log(html)
-							$('#event-list').html(eventListHtml);
-							
-						
-							//now that we have some events to choose from
-							self.loadEventTickets();
-				        });
-*/
 				        
 				        
 				        
 					}
-				}else if(!app.user.isLogged && localData.length && user_id.length && credential.length && credential == formVals){
+				//}else if(!app.user.isLogged && localData.length && user_id.length && credential.length && credential == formVals){
+					/*
+					//remove local storage option for now
 					console.log('is not connected but as LS');
 
 					app.user.credential = formVals;
@@ -146,17 +138,18 @@ var startApp = {
 				
 					var localDataObj = $.parseJSON(localData);
 					handleData(localDataObj, 'LS');
-					/*
-		
-					if(typeof(localDataObj[parent_id]) != 'undefined'){
+					*/
+
+
+
+					/*if(typeof(localDataObj[parent_id]) != 'undefined'){
 						var clonedObj = app.events[parent_id]['seances'][id];
 		
 						localDataObj[parent_id]['seances'][id] = clonedObj;
-					}
-					*/
+					}*/
 						
 				}else{
-					console.log('is not connected');
+					//console.log('is not connected');
 					body.addClass('logged-out').removeClass('logged-in');
 
 					if( typeof(messages.warning) != 'undefined'){
@@ -188,12 +181,12 @@ var startApp = {
 		
 		utils.updateTPageInfo('Choisir un évènement', 'events-view');
 
-		$('#logout-btn').on('click', function(){
+		$('#logout-btn').on('tap', function(){
 			$('body').removeClass('logged-in').addClass('logged-out');
 			utils.updateTPageInfo('Se connecter à un guichet', 'loggin-view');
 		})
 
-		eventList.find('a.seance').on('click', function(){
+		eventList.find('a.seance').on('tap', function(){
 			var $this = $(this),
 				listID = $this.data('list_id'),
 				parentListID = $this.parent().data('parent_list_id'),
@@ -204,19 +197,8 @@ var startApp = {
 				localData = window.localStorage.getItem('events');
 				
 				
-			//need to sync data here using data from LocalStorage	
-/*
-			if(typeof(localData) != 'undefined' && !!localData){
-				localDataObj = $.parseJSON(localData);
-				
-				if(typeof(localDataObj[listID].tickets) != 'undefined'){
-					dataQuery = JSON.stringify(localDataObj[listID].tickets);
-				}
-			}
-*/
 			
 			utils.loadEventData(params, dataQuery, function(data){
-				console.log(data)
 				
 				if(data.response.length){
 					var response = $.parseJSON(data.response);
@@ -253,7 +235,7 @@ var startApp = {
 						toScan: count-valid,
 						guichet: guichetCount
 					};
-					console.log('saveToStorage loadEventTickets')
+					//console.log('saveToStorage loadEventTickets')
 					utils.saveToStorage(parentListID, listID);
 
 					self.scanView(listID, parentListID);
@@ -317,8 +299,9 @@ var startApp = {
 		var self = this;
 		$('#event').empty();
 
+
 		utils.loadTpl('event', function (tpl) {
-			$('#back-btn').unbind('click');
+			$('#back-btn').unbind('tap');
 
             var source = tpl,
 				name = app.events[parent_id]['evenement'],
@@ -335,18 +318,22 @@ var startApp = {
 			utils.updateTPageInfo(name, 'scanner-view');
 
 
-			$('#back-btn').on('click', function(){
-				
+			$('#back-btn').on('tap', function(){
+				console.log('sync !');
 				if(!app.events[parent_id]['seances'][id].hasScanned){
+					console.log('sync 1 !');
+					console.log(app.events[parent_id]['seances'][id].hasScanned)
 					utils.updateTPageInfo('Choisir un évènement', 'events-view');
 				}else{
 					function onConfirm(buttonIndex) {
-					
+						console.log('sync 2 !');
+						console.log(buttonIndex)
+						
 						if(buttonIndex == 1){
 							utils.sync(parent_id, id);
 							utils.updateTPageInfo('Choisir un évènement', 'events-view');
 						}else{
-							console.log('saveToStorage scanview')
+							//console.log('saveToStorage scanview')
 							utils.saveToStorage(parent_id, id);
 							utils.updateTPageInfo('Choisir un évènement', 'events-view');
 						}
@@ -361,17 +348,27 @@ var startApp = {
 				}
 			})
 			
-			$('#sync-btn').on('click', function(){
+			$('#sync-btn').on('tap', function(){
+				console.log('sync 3!');
+				console.log(parent_id + ' AND ' + id);
 				utils.sync(parent_id, id);
 			})
 			
-			$('#close').on('click', function(){
+			$('#close a').on('tap', function(){
+				console.log('CLOSE SCAN');
 				plugins.barcodeScanner.dismiss();
 				$('body').removeClass('scanner-on').addClass('scanner-off');
-	
+				
+				window.setInterval(function(){
+				  console.log('waiting-card hidden')
+				  $('#waiting-card').addClass('hidden');
+				  
+				}, 5000);				
+				
 			})
 	
-			$('#scan').on('click', function(){
+			$('#scan a').on('tap', function(){
+				console.log('OPEN SCAN');
 				self.scanner(parent_id, id);
 				$('body').removeClass('scanner-off').addClass('scanner-on');
 			})
@@ -384,7 +381,7 @@ var startApp = {
 			event = app.events[parent_id]['seances'],
 			tickets = event[id]['tickets'];
 
-			console.log(tickets)
+			//console.log(tickets)
 			
 		$('#ticket-scanned').removeClass();
 		
@@ -404,13 +401,6 @@ var startApp = {
 					ticketToken = ticket[1];
 				
 				
-				// code scanned options
-				if(app.vibration){
-					navigator.notification.vibrate();
-				}
-				if(app.sound){
-					navigator.notification.beep(1);
-				}
 				
 				if( typeof( tickets[ticketId] ) == 'undefined'){
 					errorMsg = 'Ce ticket n\'est pas valide pour cet évènement';
@@ -423,6 +413,13 @@ var startApp = {
 				//check if ticket id is valid
 				if( typeof( tickets[ticketId] ) != 'undefined' && tickets[ticketId]['status'] == 0 && ticketToken == tickets[ticketId]['token']){
 					//ID is valid
+
+					// code scanned options
+					if(app.sound){
+						navigator.notification.beep(1);
+					}
+
+
 					function onConfirm(buttonIndex) {
 
 						if(buttonIndex == 1){
@@ -451,6 +448,7 @@ var startApp = {
 								.find('#scanned-count')
 								.text(app.events[parent_id]['seances'][id]['infos']['scanned']);
 
+
 							setTimeout(function(){
 								self.scanner(parent_id, id);
 							} , 1500);
@@ -475,6 +473,12 @@ var startApp = {
 
 
 				}else{
+
+					// code scanned options
+					if(app.vibration){
+						navigator.notification.vibrate();
+					}
+
 					//is not valid
 					$('#ticket-scanned').addClass('status-fail').find('#scan-result').text('Dernier Ticket "' + ticketId + '"');
 					
@@ -499,6 +503,12 @@ var startApp = {
 			
 			}else{
 				//If not a QRCODE
+
+				// code scanned options
+				if(app.vibration){
+					navigator.notification.vibrate();
+				}
+
 				function alertDismissed() {
 					setTimeout(function(){
 						self.scanner(parent_id, id);
@@ -518,7 +528,7 @@ var startApp = {
 		}, function (error) {
 			//scan failed calback
 			//failed so log a message for testing then reset scanner
-			console.log("Scanning failed: " + error);
+			//console.log("Scanning failed: " + error);
 			setTimeout(function(){
 				self.scanner(parent_id, id);
 			} , 1500);

@@ -70,6 +70,9 @@
   &.item-calm { 
     @include item-style($item-calm-bg, $item-calm-border, $item-calm-text);
   }
+  &.item-darker-calm { 
+    @include item-style($darkerCalm, $item-calm-border, $item-calm-text);
+  }
   &.item-assertive { 
     @include item-style($item-assertive-bg, $item-assertive-border, $item-assertive-text);
   }
@@ -78,6 +81,9 @@
   }
   &.item-energized { 
     @include item-style($item-energized-bg, $item-energized-border, $item-energized-text);
+  }
+  &.item-darker-energized { 
+    @include item-style($darkerEnergized, $item-energized-border, $item-energized-text);
   }
   &.item-royal { 
     @include item-style($item-royal-bg, $item-royal-border, $item-royal-text);

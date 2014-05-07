@@ -91,7 +91,7 @@ var utils = {
 					app.events[parent_id]['seances'][id]['hasSynced'] = true;
 					app.events[parent_id]['seances'][id].tickets = result.data.billets;
 					
-					console.log('saveToStorage sync')
+					//console.log('saveToStorage sync')
 					_this.saveToStorage(parent_id, id, true);
 					alertLaunch('La mise à jour a bien été effectuée', 'Mise à jour');
 				}
@@ -121,13 +121,13 @@ var utils = {
 	},
 			
 	saveToStorage: function(parent_id, id){
-		console.log('saveToStorage');
+		//console.log('saveToStorage');
 
 		var localData = window.localStorage.getItem('events'),
 			user_id = window.localStorage.getItem('user_id'),
 			id_guichet = app.user.id_guichet;
 		
-		console.log($.parseJSON(localData));
+		//console.log($.parseJSON(localData));
 
 		window.localStorage.setItem('user_id', id_guichet)
 		window.localStorage.setItem('events', JSON.stringify( app.events ) );

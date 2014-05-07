@@ -20,10 +20,7 @@ var app = {
 	vibration: true,
 	sound: true,
 	deviceOS: null,
-	//serviceUrl: 'http://services.guillaume/',
-	serviceUrl: 'http://10.11.0.179/services/',
 	portal: 'http://www.eticket.nc/?option=com_ouiz',
-	//portal: 'http://10.11.0.179/services/portal/',
 	events: {},
 	user: {
 		isLogged: false,
@@ -56,7 +53,11 @@ var app = {
         
 		ionic.Platform.detect();
 		StatusBar.styleDefault();
-		
+
+	    if (parseFloat(window.device.version) < 7.0) {
+	    	$('body').addClass('platform-ios6');
+	    }
+
 	    setTimeout(function() {
 	        navigator.splashscreen.hide();
 	    }, 500);

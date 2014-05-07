@@ -9,22 +9,28 @@
 	</div>
 
 
-	<div id="close" class="bar bar-footer bar-assertive">
-		<div class="title">Fermer</div>
+	<div id="close" class="bar bar-footer bar-assertive button-bar">
+		<a class="title ion-close button-light">  Fermer le scanner</a>
 	</div>
 </div>
 
 <div id="result-view" class="full-height">
-	<div id="result" class="padding">
+	<div id="result" class="padding light">
 		<h5 class="sub-title">{{title}}</h5>
-		<div id="total-ticket">Nombre de tickets pour cet évènement : {{infos.total}}</div>
-		<div id="scanned-tickets">Nombre de tickets scannés : <span id="scanned">{{infos.scanned}}</span></div>
-		<div id="scanned-guichet">Nombre de tickets scannés par ce guichet : <span id="guichetCount">{{infos.guichet}}</span></div>
-		<a id="sync-btn" class="button button-block icon-left ion-loop button-positive">Synchroniser avec le server</a>
+		<div id="total-ticket">Tickets pour cet évènement : {{infos.total}}</div>
+		<div id="scanned-tickets">Tickets scannés : <span id="scanned">{{infos.scanned}}</span></div>
+		<div id="scanned-guichet">Tickets scannés par ce guichet : <span id="guichetCount">{{infos.guichet}}</span></div>
+		<a id="sync-btn" class="button button-block icon-left ion-upload button-calm">  Synchroniser avec le serveur</a>
+		<div id="waiting-card" class="card">
+			<div class="item item-text-wrap">
+				Attendre !!!!
+			</div>
+		</div>
+
 	</div>
 	
 
-	<div id="scan" class="bar bar-footer bar-positive">
-		<div class="title">Scanner</div>
+	<div id="scan" class="bar bar-footer bar-energized">
+		<a class="title ion-clipboard button-calm">  Lancer le scanner</a>
 	</div>
 </div>

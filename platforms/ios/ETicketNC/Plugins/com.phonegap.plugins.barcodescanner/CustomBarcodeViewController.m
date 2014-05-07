@@ -38,6 +38,8 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [plugin.webView removeFromSuperview];
+    
+    
     [self.view addSubview:plugin.webView];
 }
 - (void)didReceiveMemoryWarning

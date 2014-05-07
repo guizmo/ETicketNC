@@ -1,10 +1,14 @@
 <ul class="events list">
 	{{#each events}}
-	<li class="item item-divider item-{{@index}}" data-list_ID="{{@key}}" data-id_guichet="{{../id_guichet}}" data-guichet="{{../guichet}}">{{evenement}}</li>
+	<li class="item item-divider item-{{@index}} item-darker-calm" data-list_ID="{{@key}}" data-id_guichet="{{../id_guichet}}" data-guichet="{{../guichet}}">{{evenement}}</li>
 	<div class="item-parent wrapper" data-parent_list_ID="{{@key}}" data-id_guichet="{{../id_guichet}}" data-guichet="{{../guichet}}">
 		{{#each seances}}
-		<a href="#" class="item seance" data-list_ID="{{id}}" data-id_guichet="{{../../id_guichet}}" data-guichet="{{../guichet}}">{{date}}</a>
+		<a href="#" class="item seance item-calm" data-list_ID="{{id}}" data-id_guichet="{{../../id_guichet}}" data-guichet="{{../guichet}}">{{date}}</a>
 		{{/each}}
 	</div>
+	{{else}}
+	<li class="item item-light" data-parent_list_ID="{{@key}}" data-id_guichet="{{../id_guichet}}" data-guichet="{{../guichet}}">
+		<h4>Il n'y pas d'évènements disponibles pour ce compte</h4>
+	</li>
 	{{/each}}
 </ul>

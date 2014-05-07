@@ -19,22 +19,25 @@
 
 
     <div class="bar bar-header">
-      <a id="back-btn" class="button icon-left ion-chevron-left button-clear button-dark hidden"></a>
-      <div class="h1 title">Se connecter à un guichet</div>
-      <a id="logout-btn" class="button button-icon icon-left ion-log-out hidden"></a>
+      <a id="back-btn" class="button icon-left ion-chevron-left button-clear button-calm hidden"></a>
+      <div class="h1 title calm">Se connecter à un guichet</div>
+      <a id="logout-btn" class="button button-icon icon-left ion-log-out button-clear button-assertive hidden"></a>
     </div>
     <div id="main" class="content has-header">
 		<form id="loginForm" class="list">
+	     	<div id="formContent" class="padding">
+	     		<img id="logo" src="img/logo.svg" />
+	    	</div>
 			<label class="item item-input">
 				<span class="input-label">Identifiant</span>
 				<input name="username" id="username" type="text" value="demo@eticket.nc"/>
 			</label>
 			<label class="item item-input">
-				<span class="input-label">Mot de pass</span>
+				<span class="input-label">Mot de passe</span>
 				<input name="password" id="password"  type="password" value="demo4eticket"/>
 			</label>
-			<div class="padding">
-				<button id="connector" class="button button-block button-positive">Connexion</button>
+			<div>
+				<button id="connector" class="button ion-log-in icon-left icon-light button-full button-energized">  Connexion</button>
 			</div>
 		</form>
 		<div id="event-list"></div>

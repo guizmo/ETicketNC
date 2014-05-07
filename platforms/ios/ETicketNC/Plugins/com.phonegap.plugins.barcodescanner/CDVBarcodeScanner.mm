@@ -15,6 +15,7 @@
 
 #import "CDVBarcodeScanner.h"
 #import "CustomBarcodeViewController.h"
+#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
 @implementation CDVBarcodeScanner {
     
@@ -58,6 +59,11 @@
         [widgetController dismissModalViewControllerAnimated:YES];
         
         // Reattaching webview
+        if(SYSTEM_VERSION_LESS_THAN(@"7.0") && self.webView.frame.origin.y < 20) {
+			CGRect frame = self.webView.frame;
+	        //frame.size.height = frame.size.height + 20;
+			self.webView.frame = CGRectOffset(frame, 0, 20);
+		}
         [self.viewController.view addSubview:self.webView];
         
         // No current barcode scanner controller
